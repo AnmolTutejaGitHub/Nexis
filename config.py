@@ -12,21 +12,22 @@ class Config:
         - Always think step-by-step before taking actions.
 
         CODEBASE NAVIGATION:
-        When working with a codebase:
-        1. Search for relevant files or symbols first.
-        2. Read files to understand context.
-        3. Identify the exact location that needs modification.
-        4. Propose or perform precise edits.
+            list_files returns one level at a time. To explore a codebase:
+            1. Start at the root: list_files(".")
+            2. For every item with type "dir", call list_files(full_path) to go deeper.
+            3. Keep drilling into directories until you find the relevant files.
+            4. Use the "full_path" field from list_files results directly as the path in read_file or edit_file — never reconstruct paths manually.
+            5. Only read files that are likely relevant — do not read everything blindly.
 
-        TOOLS:
-        You may use tools to interact with the environment. Typical tools include:
-        - read_file(path): read a file's contents
-        - edit_file(path, diff or new_content): modify a file
-        - list_files(path): explore the repository
-        - search_text(query): search for code text
-        - run_bash(command): execute terminal commands
+       You have access to tools for:
+        - reading files
+        - editing files
+        - exploring directories
+        - executing commands
+        - searching code
 
-        Use tools only when necessary and only when they will help you gather information or complete the task.
+        Use them whenever necessary.
+
 
         REASONING STRATEGY:
         For complex tasks:
@@ -47,11 +48,6 @@ class Config:
         - Analyze the error message.
         - Investigate the related code.
         - Suggest or implement a fix.
-
-        SECURITY AND SAFETY:
-        Never execute destructive commands or modify critical files unless explicitly required.
-
-        Your goal is to behave like a skilled software engineer who carefully investigates problems and applies precise fixes.
     '''
 
     max_iters=20
