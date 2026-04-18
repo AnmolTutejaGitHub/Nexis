@@ -47,9 +47,34 @@ def main():
                     tools=tools,
                     api_key=os.getenv("GEMINI_API_KEY")
                 )
-                print(response)
+                #print(response)
                 message = response.choices[0].message
-                messages.append(message)
+                # messages.append(message)
+                msg = {
+                    "role": message.role
+                }
+
+                if message.content:
+                    msg["content"] = message.content
+
+                if message.tool_calls:
+                    #msg["tool_calls"] = message.tool_calls
+                    tool_calls = []
+
+                    for call in message.tool_calls:
+                        tool_calls.append({
+                            "id": call.id,
+                            "type": "function",
+                            "function": {
+                                "name": call.function.name,
+                                "arguments": call.function.arguments
+                            }
+                        })
+
+                    msg["tool_calls"] = tool_calls
+
+                messages.append(msg)
+
                 if message.tool_calls:
                     tool_results = run_tool_calls(message.tool_calls)
                     messages.extend(tool_results)
@@ -72,7 +97,7 @@ def main():
             except Exception as e:
                 print(f"[Error] Unexpected error: {e}")
                 break
-
+        print(f"[message] {messages}")
 
 
 if __name__ == "__main__":

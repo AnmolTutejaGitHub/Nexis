@@ -2,7 +2,6 @@ from tools.bash_access import bash_access
 from tools.create_path import create_path
 from tools.delete_path import delete_path
 from tools.edit_file import edit_file
-from tools.grep_search import grep_search
 from tools.list_files import list_files
 from tools.read_file import read_file
 from tools.semantic_search import semantic_search

@@ -8,4 +8,6 @@ dependencies = [
     "litellm>=1.83.8",
     "python-dotenv>=1.0.1",
     "tavily-python>=0.7.23",
+    "tree-sitter>=0.21.3,<0.22",
+    "tree-sitter-languages>=1.10.2",
 ]
