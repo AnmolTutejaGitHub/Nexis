@@ -7,6 +7,8 @@ from tools.read_file import read_file
 from tools.semantic_search import semantic_search
 from tools.update_file import update_file
 from tools.web_search import web_search
+from tools.repomap.get_repomap import get_repomap
+from tools.read_file import read_file_range
 
 
 TOOL_REGISTRY = {
@@ -16,7 +18,7 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "read_file",
-                "description": "Read the full contents of a file. Always call this before edit_file so you have the exact text to use as old_str.",
+                "description": "Read the full contents of a file. Use ONLY as a last resort when read_file_range cannot be used.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -28,13 +30,33 @@ TOOL_REGISTRY = {
         }
     },
 
+    "read_file_range": {
+        "fn": read_file_range,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "read_file_range",
+                "description": "Read a range of lines from a file. Always call this before edit_file so you have the exact text to use as old_str.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "path": {"type": "string", "description": "Absolute or relative path of the file to read."},
+                        "start_line": {"type": "integer", "description": "Start line number (inclusive)."},
+                        "end_line": {"type": "integer", "description": "End line number (inclusive)."}
+                    },
+                    "required": ["path", "start_line", "end_line"]
+                }
+            }
+        }
+    },
+
     "edit_file": {
         "fn": edit_file,
         "schema": {
             "type": "function",
             "function": {
                 "name": "edit_file",
-                "description": "Surgically edit a file by replacing an exact string match. Call read_file first. old_str must be an exact copy (including indentation) and must appear exactly once in the file.",
+                "description": "Surgically edit a file by replacing an exact string match. Call read_file_range or read_file first. old_str must be an exact copy (including indentation) and must appear exactly once in the file.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -172,6 +194,24 @@ TOOL_REGISTRY = {
                         "query": {"type": "string", "description": "Natural language description of what you're looking for, e.g. 'authentication logic'."}
                     },
                     "required": ["query"]
+                }
+            }
+        }
+    },
+
+    "get_repomap": {
+        "fn": get_repomap,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "get_repomap",
+                "description": "Get the repomap of a file.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "path": {"type": "string", "description": "Absolute or relative path of the file to get the repomap of."}
+                    },
+                    "required": ["path"]
                 }
             }
         }

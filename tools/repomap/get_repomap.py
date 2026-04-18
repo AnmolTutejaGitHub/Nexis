@@ -60,7 +60,6 @@ def get_repomap(path):
     node_map = LANG_NODE_MAP[lang]
     repomap = {}
 
-    print_tree(root,code_bytes)
     for category, config in node_map.items():
         node_types = set(config["types"])
         extract_type = config["extract"]

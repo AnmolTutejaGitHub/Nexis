@@ -16,8 +16,18 @@ class Config:
             1. Start at the root: list_files(".")
             2. For every item with type "dir", call list_files(full_path) to go deeper.
             3. Keep drilling into directories until you find the relevant files.
-            4. Use the "full_path" field from list_files results directly as the path in read_file or edit_file — never reconstruct paths manually.
+            4. Use the "full_path" field from list_files results directly as the path in read_file_range or edit_file — never reconstruct paths manually.
             5. Only read files that are likely relevant — do not read everything blindly.
+        
+        CODE READING STRATEGY (IMPORTANT):
+            You MUST follow this workflow:
+            1. ALWAYS call get_repomap(path) first to understand file structure.
+            2. Identify relevant functions/classes from the repomap.
+            3. Use read_file_range(path, start_line, end_line) to read ONLY the required code.
+            4. NEVER read entire files if a range is sufficient.
+            5. Use read_file(path) ONLY as a last resort when:
+            - the file has no useful structure, or
+            - the required code spans unknown regions.
 
        You have access to tools for:
         - reading files
@@ -25,6 +35,7 @@ class Config:
         - exploring directories
         - executing commands
         - searching code
+        - getting repomap of a file
 
         Use them whenever necessary.
 
