@@ -1,19 +1,23 @@
-import os
-import litellm
 from dotenv import load_dotenv
+load_dotenv()
+import litellm
 from config import config
-from tools.tool_registry import function_call
 from tools.tool_registry import get_tool_schemas
 from utils.run_tool_calls import run_tool_calls
 from utils.prune_messages import prune_messages
+from utils.print_utils import print_banner
+from utils.print_utils import print_line
 
 def main():
-    load_dotenv()
+    print_banner()
+
     messages = [{"role": "system", 
     "content": config.system_prompt}]
 
     while True:
+        print_line()
         input_prompt=input("You ")
+        print_line()
         messages.append({
             "role" : "user",
             "content" : input_prompt
@@ -23,12 +27,11 @@ def main():
         
         for i in range(0,config.max_iters):
             try:
-                messages = prune_messages(messages)
                 response = litellm.completion(
-                    model="gemini/gemini-flash-latest",
+                    model=config.LLM,
                     messages=messages,
                     tools=tools,
-                    api_key=os.getenv("GEMINI_API_KEY")
+                    api_key=config.LLM_API_KEY
                 )
                 message = response.choices[0].message
                 msg = {
@@ -59,24 +62,26 @@ def main():
                     tool_results = run_tool_calls(message.tool_calls)
                     messages.extend(tool_results)
                 else:
-                    print(f"[Agent] {message.content}")
+                    print(f"\n[Agent] {message.content}")
                     break
 
             except litellm.AuthenticationError as e:
-                print(f"[Error] Bad API key: {e}")
+                print(f"\n[Error] Bad API key: {e}")
                 break
 
             except litellm.RateLimitError as e:
-                print(f"[Error] Rate limited: {e}")
+                print(f"\n[Error] Rate limited: {e}")
                 break
 
             except litellm.APIError as e:
-                print(f"[Error] API error: {e}")
+                print(f"\n[Error] API error: {e}")
                 break
 
             except Exception as e:
-                print(f"[Error] Unexpected error: {e}")
+                print(f"\n[Error] Unexpected error: {e}")
                 break
+    
+        messages = prune_messages(messages)
 
 
 if __name__ == "__main__":

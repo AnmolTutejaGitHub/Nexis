@@ -1,6 +1,6 @@
 import json
 from typing import List,Dict
-
+from config import config
 
 def summarise_tool_result(name: str,content: str):
     try:
@@ -40,15 +40,13 @@ def total_chars(messages: List[Dict]):
 
 
 def prune_messages(messages: List[Dict]):
-    RECENT_KEEP = 6
-    MAX_CONTEXT_CHARS = 50000
 
-    if len(messages) <= RECENT_KEEP:
+    if len(messages) <= config.RECENT_KEEP:
         return messages
 
     system = messages[0]
-    old_messages = messages[1:-RECENT_KEEP]
-    recent_messages = messages[-RECENT_KEEP:]
+    old_messages = messages[1:-config.RECENT_KEEP]
+    recent_messages = messages[-config.RECENT_KEEP:]
 
     for message in old_messages:
         if message.get("role") == "tool":
@@ -58,7 +56,7 @@ def prune_messages(messages: List[Dict]):
             if tool_name and content and len(content) > 300:
                 message["content"] = summarise_tool_result(tool_name, content)
 
-    while total_chars([system] + old_messages + recent_messages) > MAX_CONTEXT_CHARS and old_messages:
+    while total_chars([system] + old_messages + recent_messages) > config.MAX_CONTEXT_CHARS and old_messages:
         old_messages.pop(0)
 
     return [system] + old_messages + recent_messages

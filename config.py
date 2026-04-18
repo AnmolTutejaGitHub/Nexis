@@ -1,3 +1,5 @@
+import os
+
 class Config:
     system_prompt='''
         You are Nexis, an advanced AI coding assistant designed to help users understand, navigate, and modify codebases.
@@ -48,6 +50,11 @@ class Config:
         4. Analyze results carefully.
         5. Produce the best solution.
 
+        CODE EDITING RULES:
+        - ALWAYS call read_file_range before edit_file.
+        - old_str must match exactly (including indentation).
+        - Make minimal edits — avoid rewriting entire files.
+
         CODING STYLE:
         - Write clear, maintainable code.
         - Follow existing project conventions when possible.
@@ -62,4 +69,10 @@ class Config:
     '''
 
     max_iters=20
+    RECENT_KEEP=6
+    MAX_CONTEXT_CHARS=50000
+    LLM="gemini/gemini-flash-latest"
+    LLM_API_KEY=os.getenv("GEMINI_API_KEY")
+
+
 config = Config()
