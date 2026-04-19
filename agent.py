@@ -5,8 +5,7 @@ from config import config
 from tools.tool_registry import get_tool_schemas
 from utils.run_tool_calls import run_tool_calls
 from utils.prune_messages import prune_messages
-from utils.print_utils import print_banner
-from utils.print_utils import print_line
+from utils.print_utils import print_banner, print_agent, print_error, user_input
 
 def main():
     print_banner()
@@ -15,9 +14,7 @@ def main():
     "content": config.system_prompt}]
 
     while True:
-        print_line()
-        input_prompt=input("You ")
-        print_line()
+        input_prompt = user_input()
         messages.append({
             "role" : "user",
             "content" : input_prompt
@@ -25,7 +22,7 @@ def main():
 
         tools = get_tool_schemas()
         
-        for i in range(0,config.max_iters):
+        for i in range(0, config.max_iters):
             try:
                 response = litellm.completion(
                     model=config.LLM,
@@ -59,26 +56,28 @@ def main():
                 messages.append(msg)
 
                 if message.tool_calls:
+                    if message.content:
+                        print_agent(message.content)
                     tool_results = run_tool_calls(message.tool_calls)
                     messages.extend(tool_results)
                 else:
-                    print(f"\n[Agent] {message.content}")
+                    print_agent(message.content)
                     break
 
             except litellm.AuthenticationError as e:
-                print(f"\n[Error] Bad API key: {e}")
+                print_error(f"Bad API key: {e}")
                 break
 
             except litellm.RateLimitError as e:
-                print(f"\n[Error] Rate limited: {e}")
+                print_error(f"Rate limited: {e}")
                 break
 
             except litellm.APIError as e:
-                print(f"\n[Error] API error: {e}")
+                print_error(f"API error: {e}")
                 break
 
             except Exception as e:
-                print(f"\n[Error] Unexpected error: {e}")
+                print_error(f"Unexpected error: {e}")
                 break
     
         messages = prune_messages(messages)

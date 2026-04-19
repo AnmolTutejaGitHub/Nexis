@@ -1,5 +1,6 @@
 import json
 from tools.tool_registry import function_call
+from utils.print_utils import print_tool_call, print_tool_result
 
 def run_tool_calls(tool_calls):
     results = []
@@ -7,9 +8,9 @@ def run_tool_calls(tool_calls):
         name = call.function.name
         args = json.loads(call.function.arguments)
 
-        print(f"\n[TOOL] {name}({args})")
+        print_tool_call(name,args)
         result = function_call(name,args)
-        print(f"\n[TOOL RESULT] {result}")
+        print_tool_result(result)
 
         results.append({
             "role": "tool",
