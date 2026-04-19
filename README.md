@@ -40,11 +40,14 @@ A coding agent that runs in your terminal. It can read, edit, search, and naviga
 
 ```bash
 # Clone the repo
-git clone https://github.com/AnmolTuteworlds/Nexis.git
+git clone https://github.com/AnmolTutejaGitHub/Nexis.git
 cd Nexis
 
 # Create the virtual environment and install dependencies
 uv sync
+
+# Install Nexis as an editable package (registers the `nexis` CLI command)
+uv pip install -e .
 ```
 
 ### Configure
@@ -62,8 +65,26 @@ TAVILY_API_KEY=your-tavily-api-key
 
 ### Run
 
+#### From the project directory
+
 ```bash
 uv run agent.py
+```
+
+#### From anywhere (global CLI)
+
+After installing with `uv pip install -e .`, activate the project's virtual environment to make the `nexis` command available globally:
+
+```bash
+source /path/to/Nexis/.venv/bin/activate 
+# (source /Users/anmoltuteja/Desktop/Nexis/.venv/bin/activate in my case)
+# now nexis works from anywhere
+```
+
+Now you can run Nexis from any directory:
+
+```bash
+nexis
 ```
 
 ## License
