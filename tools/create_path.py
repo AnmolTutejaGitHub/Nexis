@@ -10,7 +10,7 @@ def create_path(path, type="file", content=""):
 
         return {
             "success": True,
-            "message": f"{type} created at {path}"
+            "message": f"Created {path} ({type})"
         }
 
     except Exception as e:

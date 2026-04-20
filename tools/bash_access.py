@@ -1,12 +1,12 @@
 import subprocess
 from utils.print_utils import print_agent
+from utils.human_feedback.ask_permission import ask_permission
 
 def bash_access(command: str):
     try:
-        print_agent(f"About to run:\n{command}\nAllow? (y/n)")
-        permission = input()
+        permission_granted = ask_permission(f"About to run:\n{command}\nAllow? (y/n)")
 
-        if permission.strip().lower() in ["y","yes"]:
+        if permission_granted:
             result = subprocess.run(
                 command,
                 shell=True,

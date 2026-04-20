@@ -38,6 +38,7 @@ class Config:
         - executing commands
         - searching code
         - getting repomap of a file
+        - asking the user clarifying questions (use ONLY if needed don't disturb user much)
 
         Use them whenever necessary.
 

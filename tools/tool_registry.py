@@ -9,6 +9,7 @@ from tools.update_file import update_file
 from tools.web_search import web_search
 from tools.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
+from tools.ask_human import ask_human
 
 
 TOOL_REGISTRY = {
@@ -212,6 +213,24 @@ TOOL_REGISTRY = {
                         "path": {"type": "string", "description": "Absolute or relative path of the file to get the repomap of."}
                     },
                     "required": ["path"]
+                }
+            }
+        }
+    },
+
+    "ask_human": {
+        "fn": ask_human,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "ask_human",
+                "description": "Ask the human user a clarifying question when you need more information to proceed. Use this when the task is ambiguous, you need a preference, or you need confirmation on a critical decision. Do NOT overuse — try to resolve uncertainties with available tools first.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "query": {"type": "string", "description": "The question to ask the human user."}
+                    },
+                    "required": ["query"]
                 }
             }
         }

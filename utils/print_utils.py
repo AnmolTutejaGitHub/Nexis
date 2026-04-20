@@ -32,7 +32,7 @@ def print_tool_call(name, args):
 def print_tool_result(result):
     console.print(Panel(
         Text(_format_json(result),style="dim"),
-        title="[bold #34d399]RESULT[/]",
+        title="[bold #34d399]TOOL RESULT[/]",
         border_style="#34d399",
         padding=(0,1)
     ))
@@ -55,9 +55,14 @@ def print_error(error):
         padding=(0,1)
     ))
 
+def print_user_prompt():
+    console.print("[bold #60a5fa]You[/bold #60a5fa]", end=" ")
+
+
 def user_input():
-    console.print("\n[bold #60a5fa]You[/bold #60a5fa]",end=" ")
-    console.print("[dim]Ask Nexis anything…[/dim]",end=" ")
+    console.print()
+    print_user_prompt()
+    console.print("[dim]Ask Nexis anything…[/dim]", end=" ")
 
     value = input()
 

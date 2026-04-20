@@ -1,3 +1,5 @@
+from utils.human_feedback.preview_edit import preview_edit
+
 def edit_file(path: str, old_str: str, new_str: str):
     try:
         with open(path, "r",encoding="utf-8") as f:
@@ -21,6 +23,14 @@ def edit_file(path: str, old_str: str, new_str: str):
                     f"old_str found {count} times in the file — it must be unique. "
                     "Add more surrounding lines to make it unambiguous."
                 )
+            }
+
+        accepted = preview_edit(path, old_str, new_str)
+
+        if not accepted:
+            return {
+                "success": False,
+                "error": "Edit rejected by user."
             }
 
         updated = original.replace(old_str, new_str, 1)
