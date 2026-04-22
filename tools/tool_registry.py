@@ -134,11 +134,22 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "list_files",
-                "description": "List all files and folders inside a directory (one level deep).",
+                "description": "List files and folders inside a directory (one level deep). Common build artefacts, caches, dependency trees, and IDE folders are excluded by default.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "path": {"type": "string", "description": "Absolute or relative directory path to list."}
+                        "path": {
+                            "type": "string",
+                            "description": "Absolute or relative directory path to list."
+                        },
+                        "include_hidden": {
+                            "type": "boolean",
+                            "description": "If true, include dot-files and dot-directories (e.g. .gitignore). Defaults to false."
+                        },
+                        "include_ignored": {
+                            "type": "boolean",
+                            "description": "If true, include paths that would normally be excluded (caches, build dirs, node_modules, etc.). Defaults to false."
+                        }
                     },
                     "required": ["path"]
                 }

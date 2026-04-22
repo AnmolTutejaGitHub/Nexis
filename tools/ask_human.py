@@ -1,8 +1,7 @@
-from utils.print_utils import print_agent, console
-
+from utils.print_utils import print_agent, print_user_prompt
 
 def ask_human(query):
     print_agent(query)
-    console.print("[bold #60a5fa]You[/bold #60a5fa]", end=" ")
+    print_user_prompt()
     human_response = input()
     return human_response

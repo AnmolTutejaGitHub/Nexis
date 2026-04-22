@@ -3,6 +3,7 @@ def read_file(path):
         with open(path,"r") as f:
             return {
                 "success": True,
+                "path": path,
                 "content": f.read()
             }
 
@@ -21,6 +22,9 @@ def read_file_range(path,start_line,end_line):
         end = min(len(lines), end_line)
         return {
             "success": True,
+             "path": path,
+            "start_line": start_line,
+            "end_line": end_line,
             "content": "".join(lines[start:end])
         }
     except Exception as e:

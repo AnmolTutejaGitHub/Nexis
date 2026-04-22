@@ -5,7 +5,7 @@ from config import config
 from tools.tool_registry import get_tool_schemas
 from utils.run_tool_calls import run_tool_calls
 from utils.prune_messages import prune_messages
-from utils.print_utils import print_banner, print_agent, print_error, user_input
+from utils.print_utils import print_banner, print_agent, print_error, user_input, print_token_usage
 
 def main():
     print_banner()
@@ -30,6 +30,7 @@ def main():
                     tools=tools,
                     api_key=config.LLM_API_KEY
                 )
+                print_token_usage(response.usage)
                 message = response.choices[0].message
                 msg = {
                     "role": message.role

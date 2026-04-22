@@ -55,6 +55,16 @@ def print_error(error):
         padding=(0,1)
     ))
 
+def print_token_usage(usage):
+    console.print(Panel(
+        f"[dim]Input Tokens:[/] {usage.prompt_tokens}  "
+        f"[dim]Output Tokens:[/] {usage.completion_tokens}  ",
+        title="[bold #38bdf8]Tokens[/]",
+        border_style="#38bdf8",
+        padding=(0,1)
+    ))
+
+
 def print_user_prompt():
     console.print("[bold #60a5fa]You[/bold #60a5fa]", end=" ")
 
