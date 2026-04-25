@@ -1,25 +1,52 @@
 import json
 from typing import List,Dict
 from config import config
+from utils.observations import create_observation
 
-def summarise_tool_result(name: str,content: str):
+def summarise_tool_result(tool_name: str,content: str):
     try:
         data = json.loads(content)
 
         if data.get("summary"):
             return content
 
-        if name in ["read_file", "read_file_range", "get_repomap"]:
+        obs_id = create_observation(tool_name,data)
+
+        if tool_name in ["read_file", "read_file_range"]:
             path = data.get("file") or data.get("path", "unknown")
+            lines = len(data.get("content", "").splitlines())
+            chars = len(data.get("content", ""))
             return json.dumps({
-                "summary": f"[Previously read: {path} — content omitted]"
+                "summary": f"read {lines} lines {chars} chars in {path}. use read_observation {obs_id} for full result"
             })
 
-        elif name == "list_files":
-            items = data.get("items", [])
+        if tool_name == "bash_access":
+            stdout = data.get("stdout", "")
+            stderr = data.get("stderr", "")
+            code = data.get("returncode", "unknown")
             return json.dumps({
-                "summary": f"[Listed {len(items)} items at {data.get('path', '')}]"
+                "summary": f"ran command exit {code}, stdout {len(stdout)} chars stderr {len(stderr)} chars. use read_observation {obs_id} for full result"
             })
+        
+        if tool_name == "web_search":
+            response = data.get("response", "")
+            return json.dumps({
+                "summary": f"web_search, response {len(str(response))} chars. use read_observation {obs_id} for full result"
+            })
+        
+        if tool_name == "ask_human":
+            return json.dumps({
+                "summary": f"ask_human returned {len(content)} chars. use read_observation {obs_id} for full result"
+            })
+    
+        if tool_name in  ["edit_file","update_file"]:
+            path = data.get("file") or data.get("path", "unknown")
+            return json.dumps({
+                "summary": f"edited file {path}. use read_observation {obs_id} for full result"
+            })
+        
+        if tool_name in ["list_files","get_repomap"]:
+            return content
 
         else:
             return json.dumps({

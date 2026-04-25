@@ -14,6 +14,7 @@ def update_file(path, content):
         if not accepted:
             return {
                 "success": False,
+                "path": path,
                 "error": "File update rejected by user."
             }
 
@@ -22,6 +23,7 @@ def update_file(path, content):
 
         return {
             "success": True,
+            "path": path,
             "message": f"File updated: {path}"
         }
 

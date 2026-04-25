@@ -10,6 +10,7 @@ from tools.web_search import web_search
 from tools.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
 from tools.ask_human import ask_human
+from tools.read_observation import read_observation
 
 
 TOOL_REGISTRY = {
@@ -242,6 +243,24 @@ TOOL_REGISTRY = {
                         "query": {"type": "string", "description": "The question to ask the human user."}
                     },
                     "required": ["query"]
+                }
+            }
+        }
+    },
+
+    "read_observation": {
+        "fn": read_observation,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "read_observation",
+                "description": "Read a saved full tool result by observation id.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "observation_id": {"type": "string", "description": "Observation id from a summarized tool result."}
+                    },
+                    "required": ["observation_id"]
                 }
             }
         }

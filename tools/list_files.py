@@ -73,7 +73,7 @@ def list_files(path,include_hidden=False,include_ignored=False):
 
         result = []
         skipped = []
-        for name in items:
+        for name in sorted(items):
             if not include_ignored and is_excluded(name):
                 skipped.append(name)
                 continue
@@ -83,17 +83,12 @@ def list_files(path,include_hidden=False,include_ignored=False):
                 continue
 
             full_path = os.path.join(path, name)
-            result.append({
-                "name": name,
-                "full_path": full_path,
-                "type": "dir" if os.path.isdir(full_path) else "file"
-            })
+            result.append(f"{name}/" if os.path.isdir(full_path) else name)
 
         return {
             "success": True,
             "path": path,
             "items": result,
-            # "skipped": skipped
         }
 
     except Exception as e:

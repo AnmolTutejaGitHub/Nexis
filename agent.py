@@ -24,6 +24,7 @@ def main():
         
         for i in range(0, config.max_iters):
             try:
+                prune_messages(messages)
                 response = litellm.completion(
                     model=config.LLM,
                     messages=messages,

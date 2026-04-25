@@ -15,7 +15,7 @@ class Config:
     '''
 
     max_iters=20
-    RECENT_KEEP=6
+    RECENT_KEEP=3
     MAX_CONTEXT_CHARS=50000
     LLM="gemini/gemini-flash-latest"
     LLM_API_KEY=os.getenv("GEMINI_API_KEY")

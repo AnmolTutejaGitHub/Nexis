@@ -8,6 +8,7 @@ def edit_file(path: str, old_str: str, new_str: str):
         if old_str not in original:
             return {
                 "success": False,
+                "path" : path,
                 "error": (
                     "old_str not found in file. "
                     "Make sure to copy the exact text including whitespace/indentation. "
@@ -19,6 +20,7 @@ def edit_file(path: str, old_str: str, new_str: str):
         if count > 1:
             return {
                 "success": False,
+                "path" : path,
                 "error": (
                     f"old_str found {count} times in the file — it must be unique. "
                     "Add more surrounding lines to make it unambiguous."
