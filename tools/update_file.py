@@ -30,5 +30,5 @@ def update_file(path, content):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }

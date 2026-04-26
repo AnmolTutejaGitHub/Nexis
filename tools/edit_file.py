@@ -1,9 +1,28 @@
 from utils.human_feedback.preview_edit import preview_edit
 
-def edit_file(path: str, old_str: str, new_str: str):
+def edit_file(path: str, old_str: str = "", new_str: str = ""):
     try:
         with open(path, "r",encoding="utf-8") as f:
             original = f.read()
+
+        if old_str == "":
+            accepted = preview_edit(path,original,new_str)
+
+            if not accepted:
+                return {
+                    "success": False,
+                    "path": path,
+                    "error": "File update rejected by user."
+                }
+
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(new_str)
+
+            return {
+                "success": True,
+                "path": path,
+                "message": f"File updated: {path}"
+            }
 
         if old_str not in original:
             return {
@@ -45,6 +64,7 @@ def edit_file(path: str, old_str: str, new_str: str):
 
         return {
             "success": True,
+            "path": path,
             "message": f"File edited: {path}",
             "diff_preview": f"{old_preview}\n{new_preview}"
         }
@@ -52,4 +72,4 @@ def edit_file(path: str, old_str: str, new_str: str):
     except FileNotFoundError:
         return {"success": False, "error": f"File not found: {path}"}
     except Exception as e:
-        return {"success": False, "error": str(e)}
+        return {"success": False, "error": str(e)[:500]}

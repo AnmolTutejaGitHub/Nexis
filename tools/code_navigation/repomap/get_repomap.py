@@ -1,9 +1,8 @@
 from tree_sitter import Language, Parser
 from tree_sitter_languages import get_language
-from tools.repomap.extension_map import EXTENSION_MAP
-from tools.repomap.lang_node_map import LANG_NODE_MAP
+from tools.code_navigation.repomap.extension_map import EXTENSION_MAP
+from tools.code_navigation.repomap.lang_node_map import LANG_NODE_MAP
 import os
-
 
 def detect_language(path):
     ext = os.path.splitext(path)[1].lower()
@@ -43,7 +42,7 @@ def get_repomap(path):
     try:
         language = get_language(lang)
     except Exception as e:
-        return {"error": f"Grammar not available for {lang}: {e}"}
+        return {"error": f"Grammar not available for {lang}: {e[:500]}"}
 
     parser = Parser()
     parser.set_language(language)

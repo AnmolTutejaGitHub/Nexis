@@ -12,5 +12,5 @@ def web_search(query):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }

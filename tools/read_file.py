@@ -10,7 +10,7 @@ def read_file(path):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }
 
 def read_file_range(path,start_line,end_line):
@@ -30,5 +30,5 @@ def read_file_range(path,start_line,end_line):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }

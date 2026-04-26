@@ -6,6 +6,7 @@ class Config:
 
         Behavior:
         - Inspect relevant files before changing code.
+        - Call get_repomap before reading a source code file when possible.
         - Prefer read_file_range over full-file reads.
         - Use get_repomap before reading structured source files when useful.
         - For edits, read the target code first and use exact old_str matches.

@@ -39,6 +39,8 @@ def print_tool_result(result):
 
 
 def print_agent(content):
+    if content is None:
+        return
     console.print(Panel(
         content,
         title="[bold #a78bfa]Nexis[/]",

@@ -24,5 +24,5 @@ def delete_path(path):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }

@@ -4,10 +4,8 @@ from tools.delete_path import delete_path
 from tools.edit_file import edit_file
 from tools.list_files import list_files
 from tools.read_file import read_file
-from tools.semantic_search import semantic_search
-from tools.update_file import update_file
 from tools.web_search import web_search
-from tools.repomap.get_repomap import get_repomap
+from tools.code_navigation.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
 from tools.ask_human import ask_human
 from tools.read_observation import read_observation
@@ -20,7 +18,7 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "read_file",
-                "description": "Read the full contents of a file. Use ONLY as a last resort when read_file_range cannot be used.",
+                "description": "Read the full contents of a file. Use ONLY as a last resort when read_file_range cannot be used. For source code, call get_repomap first when possible.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -38,7 +36,7 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "read_file_range",
-                "description": "Read a range of lines from a file. Always call this before edit_file so you have the exact text to use as old_str.",
+                "description": "Read a range of lines from a file. Always call this before edit_file so you have the exact text to use as old_str. For source code, prefer this after get_repomap.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -58,34 +56,15 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "edit_file",
-                "description": "Surgically edit a file by replacing an exact string match. Call read_file_range or read_file first. old_str must be an exact copy (including indentation) and must appear exactly once in the file.",
+                "description": "Edit a file by replacing an exact string match, or overwrite the whole file when old_str is empty. Call read_file_range or read_file first for targeted edits.",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "path": {"type": "string", "description": "Absolute or relative path of the file to edit."},
-                        "old_str": {"type": "string", "description": "The exact text to find and replace. Include surrounding lines to make it unique."},
-                        "new_str": {"type": "string", "description": "The replacement text. Keep correct indentation."}
+                        "old_str": {"type": "string", "description": "The exact text to find and replace. Leave empty to overwrite the whole file."},
+                        "new_str": {"type": "string", "description": "The replacement text or full new file content."}
                     },
-                    "required": ["path", "old_str", "new_str"]
-                }
-            }
-        }
-    },
-
-    "update_file": {
-        "fn": update_file,
-        "schema": {
-            "type": "function",
-            "function": {
-                "name": "update_file",
-                "description": "Overwrite a file with entirely new content. Use only when creating from scratch. For targeted changes use edit_file.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "path": {"type": "string", "description": "Absolute or relative path of the file to overwrite."},
-                        "content": {"type": "string", "description": "The full new content to write."}
-                    },
-                    "required": ["path", "content"]
+                    "required": ["path", "new_str"]
                 }
             }
         }
@@ -193,32 +172,14 @@ TOOL_REGISTRY = {
             }
         }
     },
-
-    "semantic_search": {
-        "fn": semantic_search,
-        "schema": {
-            "type": "function",
-            "function": {
-                "name": "semantic_search",
-                "description": "Search the codebase semantically using vector embeddings. Finds conceptually related files even without exact keyword matches.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "query": {"type": "string", "description": "Natural language description of what you're looking for, e.g. 'authentication logic'."}
-                    },
-                    "required": ["query"]
-                }
-            }
-        }
-    },
-
+    
     "get_repomap": {
         "fn": get_repomap,
         "schema": {
             "type": "function",
             "function": {
                 "name": "get_repomap",
-                "description": "Get the repomap of a file.",
+                "description": "Get the repomap of a file. Use this before reading source code when possible.",
                 "parameters": {
                     "type": "object",
                     "properties": {

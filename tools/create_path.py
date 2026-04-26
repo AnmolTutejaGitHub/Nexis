@@ -16,5 +16,5 @@ def create_path(path, type="file", content=""):
     except Exception as e:
         return {
             "success": False,
-            "error": str(e)
+            "error": str(e)[:500]
         }
