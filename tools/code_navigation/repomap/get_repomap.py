@@ -9,7 +9,7 @@ def detect_language(path):
     return EXTENSION_MAP.get(ext)
 
 
-def extract_nodes(node, node_types, extract_type, code_bytes, results=None):
+def extract_nodes(node, node_types, extract_type, code_bytes, name_fields=None, results=None):
     if results is None:
         results = []
 
@@ -18,7 +18,11 @@ def extract_nodes(node, node_types, extract_type, code_bytes, results=None):
             value = code_bytes[node.start_byte:node.end_byte].decode("utf-8")
 
         elif extract_type == "name":
-            name_node = node.child_by_field_name("name")
+            name_node = node
+            for field in name_fields or ["name"]:
+                if name_node is None:
+                    break
+                name_node = name_node.child_by_field_name(field)
             if name_node:
                 value = code_bytes[name_node.start_byte:name_node.end_byte].decode("utf-8")
             else:
@@ -31,8 +35,9 @@ def extract_nodes(node, node_types, extract_type, code_bytes, results=None):
         })
 
     for child in node.children:
-        extract_nodes(child, node_types, extract_type, code_bytes, results)
+        extract_nodes(child, node_types, extract_type, code_bytes, name_fields, results)
     return results
+
 
 def get_repomap(path):
     lang = detect_language(path)
@@ -62,7 +67,10 @@ def get_repomap(path):
     for category, config in node_map.items():
         node_types = set(config["types"])
         extract_type = config["extract"]
-        found = extract_nodes(root, node_types, extract_type, code_bytes)
+        name_fields = None
+        if extract_type == "name":
+            name_fields = config.get("name_fields") or [config.get("name_field", "name")]
+        found = extract_nodes(root, node_types, extract_type, code_bytes, name_fields)
         if found:
             repomap[category] = found
 
