@@ -37,12 +37,20 @@ def edit_file(path: str, old_str: str = "", new_str: str = ""):
 
         count = original.count(old_str)
         if count > 1:
+            lines = original.splitlines()
+            match_line = next(
+                i for i, l in enumerate(lines) if old_str.splitlines()[0] in l
+            )
+            context_start = max(0, match_line - 2)
+            context_end = min(len(lines), match_line + len(old_str.splitlines()) + 2)
+            context_snippet = "\n".join(lines[context_start:context_end])
             return {
                 "success": False,
-                "path" : path,
+                "path": path,
                 "error": (
                     f"old_str found {count} times in the file — it must be unique. "
-                    "Add more surrounding lines to make it unambiguous."
+                    "Expand old_str to include the surrounding lines shown below so it matches exactly one location:\n\n"
+                    f"{context_snippet}"
                 )
             }
 

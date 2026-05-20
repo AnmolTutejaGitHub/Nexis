@@ -15,10 +15,10 @@ class Config:
         - If a tool fails, use the error to choose the next step.
     '''
 
-    max_iters=20
+    max_iters=100
     RECENT_KEEP=3
     MAX_CONTEXT_CHARS=50000
-    LLM="openai/gpt-4o-mini"
+    LLM="openai/gpt-5.2"
     LLM_API_KEY=os.getenv("OPENAI_API_KEY")
 
 config = Config()

@@ -133,8 +133,9 @@ LANG_NODE_MAP = {
             "name_field": "name",
         },
         "class": {
-            "types": ["type_declaration"],
-            "extract": "text",
+            "types": ["type_spec"],
+            "extract": "name",
+            "name_field": "name",
         },
         "import": {
             "types": ["import_declaration"],
@@ -148,9 +149,14 @@ LANG_NODE_MAP = {
             "name_field": "name",
         },
         "class": {
-            "types": ["struct_item", "enum_item", "impl_item", "trait_item"],
+            "types": ["struct_item", "enum_item", "trait_item"],
             "extract": "name",
             "name_field": "name",
+        },
+        "impl": {
+            "types": ["impl_item"],
+            "extract": "name",
+            "name_field": "type",
         },
         "import": {
             "types": ["use_declaration", "mod_item", "extern_crate_declaration"],
@@ -238,7 +244,7 @@ LANG_NODE_MAP = {
     },
     "lua": {
         "function": {
-            "types": ["function_declaration_statement"],
+            "types": ["function_definition_statement"],
             "extract": "name",
             "name_field": "name",
         },
@@ -360,7 +366,7 @@ LANG_NODE_MAP = {
     },
     "css": {
         "class": {
-            "types": ["rule"],
+            "types": ["rule_set"],
             "extract": "text",
         },
     },

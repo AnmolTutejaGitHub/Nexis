@@ -1,0 +1,2355 @@
+{
+  "sample.c": {
+    "language": "c",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.c",
+    "symbols": {
+      "function": [
+        {
+          "value": "sum_array",
+          "start_line": 15,
+          "end_line": 19
+        },
+        {
+          "value": "push",
+          "start_line": 21,
+          "end_line": 27
+        },
+        {
+          "value": "pop",
+          "start_line": 29,
+          "end_line": 37
+        },
+        {
+          "value": "repeat_str(const char *s, int n)",
+          "start_line": 39,
+          "end_line": 44
+        }
+      ],
+      "class": [
+        {
+          "value": "Node",
+          "start_line": 5,
+          "end_line": 8
+        },
+        {
+          "value": "Node",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "Stack",
+          "start_line": 10,
+          "end_line": 13
+        },
+        {
+          "value": "Node",
+          "start_line": 11,
+          "end_line": 11
+        },
+        {
+          "value": "Stack",
+          "start_line": 21,
+          "end_line": 21
+        },
+        {
+          "value": "Node",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "Node",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "Stack",
+          "start_line": 29,
+          "end_line": 29
+        },
+        {
+          "value": "Node",
+          "start_line": 31,
+          "end_line": 31
+        }
+      ],
+      "import": [
+        {
+          "value": "#include <stdio.h>\n",
+          "start_line": 1,
+          "end_line": 2
+        },
+        {
+          "value": "#include <stdlib.h>\n",
+          "start_line": 2,
+          "end_line": 3
+        },
+        {
+          "value": "#include <string.h>\n",
+          "start_line": 3,
+          "end_line": 4
+        }
+      ]
+    }
+  },
+  "sample.cpp": {
+    "language": "cpp",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.cpp",
+    "symbols": {
+      "function": [
+        {
+          "value": "calculate_checksum",
+          "start_line": 15,
+          "end_line": 17
+        },
+        {
+          "value": "validate_input",
+          "start_line": 19,
+          "end_line": 21
+        }
+      ],
+      "class": [
+        {
+          "value": "Database",
+          "start_line": 4,
+          "end_line": 13
+        }
+      ],
+      "import": [
+        {
+          "value": "#include <string>\n",
+          "start_line": 1,
+          "end_line": 2
+        },
+        {
+          "value": "#include <vector>\n",
+          "start_line": 2,
+          "end_line": 3
+        }
+      ]
+    }
+  },
+  "sample.cs": {
+    "language": "c_sharp",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.cs",
+    "symbols": {
+      "function": [
+        {
+          "value": "Log",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "LogError",
+          "start_line": 9,
+          "end_line": 9
+        },
+        {
+          "value": "Log",
+          "start_line": 18,
+          "end_line": 20
+        },
+        {
+          "value": "LogError",
+          "start_line": 22,
+          "end_line": 24
+        },
+        {
+          "value": "TaskQueue",
+          "start_line": 31,
+          "end_line": 33
+        },
+        {
+          "value": "Enqueue",
+          "start_line": 35,
+          "end_line": 37
+        },
+        {
+          "value": "RunNext",
+          "start_line": 39,
+          "end_line": 43
+        },
+        {
+          "value": "Count",
+          "start_line": 45,
+          "end_line": 45
+        }
+      ],
+      "class": [
+        {
+          "value": "ILogger",
+          "start_line": 7,
+          "end_line": 10
+        },
+        {
+          "value": "LogEntry",
+          "start_line": 12,
+          "end_line": 15
+        },
+        {
+          "value": "ConsoleLogger",
+          "start_line": 17,
+          "end_line": 25
+        },
+        {
+          "value": "TaskQueue",
+          "start_line": 27,
+          "end_line": 46
+        }
+      ],
+      "import": [
+        {
+          "value": "using System;",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "using System.Collections.Generic;",
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "value": "using System.Threading.Tasks;",
+          "start_line": 3,
+          "end_line": 3
+        }
+      ]
+    }
+  },
+  "sample.css": {
+    "language": "css",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.css",
+    "symbols": {
+      "class": [
+        {
+          "value": ":root {\n    --primary: #3b82f6;\n    --secondary: #64748b;\n    --bg: #f8fafc;\n    --radius: 0.5rem;\n}",
+          "start_line": 1,
+          "end_line": 6
+        },
+        {
+          "value": "* {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0;\n}",
+          "start_line": 8,
+          "end_line": 12
+        },
+        {
+          "value": ".container {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 0 1.5rem;\n}",
+          "start_line": 14,
+          "end_line": 18
+        },
+        {
+          "value": ".btn {\n    display: inline-flex;\n    align-items: center;\n    padding: 0.5rem 1rem;\n    border-radius: var(--radius);\n    font-weight: 600;\n    cursor: pointer;\n}",
+          "start_line": 20,
+          "end_line": 27
+        },
+        {
+          "value": ".btn-primary {\n    background-color: var(--primary);\n    color: white;\n    border: none;\n}",
+          "start_line": 29,
+          "end_line": 33
+        },
+        {
+          "value": ".navbar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem 0;\n}",
+          "start_line": 35,
+          "end_line": 40
+        },
+        {
+          "value": ".navbar {\n        flex-direction: column;\n        gap: 1rem;\n    }",
+          "start_line": 43,
+          "end_line": 46
+        },
+        {
+          "value": ".container {\n        padding: 0 1rem;\n    }",
+          "start_line": 48,
+          "end_line": 50
+        }
+      ]
+    }
+  },
+  "sample.dockerfile": {
+    "language": "dockerfile",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.dockerfile",
+    "symbols": {
+      "import": [
+        {
+          "value": "FROM python:3.12-slim AS base",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "FROM base AS deps",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "FROM deps AS app",
+          "start_line": 9,
+          "end_line": 9
+        }
+      ]
+    }
+  },
+  "sample.erl": {
+    "language": "erlang",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.erl",
+    "symbols": {
+      "function": [
+        {
+          "value": "start_link",
+          "start_line": 6,
+          "end_line": 7
+        },
+        {
+          "value": "process",
+          "start_line": 9,
+          "end_line": 10
+        },
+        {
+          "value": "get_state",
+          "start_line": 12,
+          "end_line": 13
+        },
+        {
+          "value": "stop",
+          "start_line": 15,
+          "end_line": 16
+        },
+        {
+          "value": "init",
+          "start_line": 18,
+          "end_line": 19
+        },
+        {
+          "value": "handle_call",
+          "start_line": 21,
+          "end_line": 22
+        },
+        {
+          "value": "handle_call",
+          "start_line": 23,
+          "end_line": 24
+        },
+        {
+          "value": "handle_cast",
+          "start_line": 26,
+          "end_line": 28
+        },
+        {
+          "value": "handle_cast",
+          "start_line": 29,
+          "end_line": 30
+        },
+        {
+          "value": "handle_info",
+          "start_line": 32,
+          "end_line": 33
+        },
+        {
+          "value": "terminate",
+          "start_line": 35,
+          "end_line": 36
+        }
+      ],
+      "class": [
+        {
+          "value": "worker",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.ex": {
+    "language": "elixir",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.ex",
+    "symbols": {}
+  },
+  "sample.f90": {
+    "language": "fortran",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.f90",
+    "symbols": {
+      "function": [
+        {
+          "value": "factorial",
+          "start_line": 6,
+          "end_line": 6
+        },
+        {
+          "value": "gcd",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "normalize",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "print_array",
+          "start_line": 34,
+          "end_line": 34
+        }
+      ]
+    }
+  },
+  "sample.go": {
+    "language": "go",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.go",
+    "symbols": {
+      "function": [
+        {
+          "value": "NewServer",
+          "start_line": 10,
+          "end_line": 12
+        },
+        {
+          "value": "Start",
+          "start_line": 14,
+          "end_line": 17
+        },
+        {
+          "value": "Stop",
+          "start_line": 19,
+          "end_line": 21
+        },
+        {
+          "value": "parseConfig",
+          "start_line": 23,
+          "end_line": 25
+        }
+      ],
+      "class": [
+        {
+          "value": "Server",
+          "start_line": 5,
+          "end_line": 8
+        }
+      ],
+      "import": [
+        {
+          "value": "import \"fmt\"",
+          "start_line": 3,
+          "end_line": 3
+        }
+      ]
+    }
+  },
+  "sample.hs": {
+    "language": "haskell",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.hs",
+    "symbols": {
+      "function": [
+        {
+          "value": "insert",
+          "start_line": 16,
+          "end_line": 16
+        },
+        {
+          "value": "insert",
+          "start_line": 17,
+          "end_line": 20
+        },
+        {
+          "value": "flatten",
+          "start_line": 23,
+          "end_line": 23
+        },
+        {
+          "value": "flatten",
+          "start_line": 24,
+          "end_line": 24
+        },
+        {
+          "value": "push",
+          "start_line": 27,
+          "end_line": 27
+        },
+        {
+          "value": "pop",
+          "start_line": 30,
+          "end_line": 30
+        },
+        {
+          "value": "pop",
+          "start_line": 31,
+          "end_line": 31
+        },
+        {
+          "value": "charFrequency",
+          "start_line": 34,
+          "end_line": 34
+        },
+        {
+          "value": "main",
+          "start_line": 37,
+          "end_line": 39
+        },
+        {
+          "value": "tree",
+          "start_line": 38,
+          "end_line": 38
+        }
+      ],
+      "class": [
+        {
+          "value": "data",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "Tree",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "Tree",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "Tree",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "Show",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "Eq",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "newtype Stack a = Stack { unStack :: [a] }\n    deriving (Show)",
+          "start_line": 10,
+          "end_line": 11
+        },
+        {
+          "value": "newtype",
+          "start_line": 10,
+          "end_line": 10
+        },
+        {
+          "value": "Stack",
+          "start_line": 10,
+          "end_line": 10
+        },
+        {
+          "value": "Show",
+          "start_line": 11,
+          "end_line": 11
+        },
+        {
+          "value": "type",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "Frequency",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "Map",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "Char",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "Int",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "Ord",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "Tree",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "Tree",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "Tree",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "Stack",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "Stack",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "Stack",
+          "start_line": 29,
+          "end_line": 29
+        },
+        {
+          "value": "Maybe",
+          "start_line": 29,
+          "end_line": 29
+        },
+        {
+          "value": "Stack",
+          "start_line": 29,
+          "end_line": 29
+        },
+        {
+          "value": "String",
+          "start_line": 33,
+          "end_line": 33
+        },
+        {
+          "value": "Frequency",
+          "start_line": 33,
+          "end_line": 33
+        },
+        {
+          "value": "IO",
+          "start_line": 36,
+          "end_line": 36
+        },
+        {
+          "value": "Int",
+          "start_line": 38,
+          "end_line": 38
+        }
+      ],
+      "import": [
+        {
+          "value": "import Data.List (sort, nub, group)",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "import",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "import Data.Maybe (fromMaybe, mapMaybe)",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "import",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "import qualified Data.Map.Strict as Map",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "import",
+          "start_line": 5,
+          "end_line": 5
+        }
+      ]
+    }
+  },
+  "sample.html": {
+    "language": "html",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.html",
+    "symbols": {
+      "class": [
+        {
+          "value": "<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My App</title>\n    <link rel=\"stylesheet\" href=\"/styles.css\">\n</head>\n<body>\n    <header id=\"site-header\">\n        <nav class=\"navbar\">\n            <a href=\"/\" class=\"logo\">Home</a>\n            <ul class=\"nav-links\">\n                <li><a href=\"/about\">About</a></li>\n                <li><a href=\"/contact\">Contact</a></li>\n            </ul>\n        </nav>\n    </header>\n    <main id=\"content\">\n        <section class=\"hero\">\n            <h1>Welcome to My App</h1>\n            <p>A sample application.</p>\n            <button id=\"cta-btn\" class=\"btn btn-primary\">Get Started</button>\n        </section>\n        <section class=\"features\">\n            <div class=\"feature-card\">Fast</div>\n            <div class=\"feature-card\">Reliable</div>\n        </section>\n    </main>\n    <footer>\n        <p>&copy; 2026 My App</p>\n    </footer>\n    <script src=\"/app.js\"></script>\n</body>\n</html>",
+          "start_line": 2,
+          "end_line": 35
+        },
+        {
+          "value": "<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>My App</title>\n    <link rel=\"stylesheet\" href=\"/styles.css\">\n</head>",
+          "start_line": 3,
+          "end_line": 8
+        },
+        {
+          "value": "<meta charset=\"UTF-8\">\n    ",
+          "start_line": 4,
+          "end_line": 5
+        },
+        {
+          "value": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    ",
+          "start_line": 5,
+          "end_line": 6
+        },
+        {
+          "value": "<title>My App</title>",
+          "start_line": 6,
+          "end_line": 6
+        },
+        {
+          "value": "<link rel=\"stylesheet\" href=\"/styles.css\">\n",
+          "start_line": 7,
+          "end_line": 8
+        },
+        {
+          "value": "<body>\n    <header id=\"site-header\">\n        <nav class=\"navbar\">\n            <a href=\"/\" class=\"logo\">Home</a>\n            <ul class=\"nav-links\">\n                <li><a href=\"/about\">About</a></li>\n                <li><a href=\"/contact\">Contact</a></li>\n            </ul>\n        </nav>\n    </header>\n    <main id=\"content\">\n        <section class=\"hero\">\n            <h1>Welcome to My App</h1>\n            <p>A sample application.</p>\n            <button id=\"cta-btn\" class=\"btn btn-primary\">Get Started</button>\n        </section>\n        <section class=\"features\">\n            <div class=\"feature-card\">Fast</div>\n            <div class=\"feature-card\">Reliable</div>\n        </section>\n    </main>\n    <footer>\n        <p>&copy; 2026 My App</p>\n    </footer>\n    <script src=\"/app.js\"></script>\n</body>",
+          "start_line": 9,
+          "end_line": 34
+        },
+        {
+          "value": "<header id=\"site-header\">\n        <nav class=\"navbar\">\n            <a href=\"/\" class=\"logo\">Home</a>\n            <ul class=\"nav-links\">\n                <li><a href=\"/about\">About</a></li>\n                <li><a href=\"/contact\">Contact</a></li>\n            </ul>\n        </nav>\n    </header>",
+          "start_line": 10,
+          "end_line": 18
+        },
+        {
+          "value": "<nav class=\"navbar\">\n            <a href=\"/\" class=\"logo\">Home</a>\n            <ul class=\"nav-links\">\n                <li><a href=\"/about\">About</a></li>\n                <li><a href=\"/contact\">Contact</a></li>\n            </ul>\n        </nav>",
+          "start_line": 11,
+          "end_line": 17
+        },
+        {
+          "value": "<a href=\"/\" class=\"logo\">Home</a>",
+          "start_line": 12,
+          "end_line": 12
+        },
+        {
+          "value": "<ul class=\"nav-links\">\n                <li><a href=\"/about\">About</a></li>\n                <li><a href=\"/contact\">Contact</a></li>\n            </ul>",
+          "start_line": 13,
+          "end_line": 16
+        },
+        {
+          "value": "<li><a href=\"/about\">About</a></li>",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "<a href=\"/about\">About</a>",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "<li><a href=\"/contact\">Contact</a></li>",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "<a href=\"/contact\">Contact</a>",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "<main id=\"content\">\n        <section class=\"hero\">\n            <h1>Welcome to My App</h1>\n            <p>A sample application.</p>\n            <button id=\"cta-btn\" class=\"btn btn-primary\">Get Started</button>\n        </section>\n        <section class=\"features\">\n            <div class=\"feature-card\">Fast</div>\n            <div class=\"feature-card\">Reliable</div>\n        </section>\n    </main>",
+          "start_line": 19,
+          "end_line": 29
+        },
+        {
+          "value": "<section class=\"hero\">\n            <h1>Welcome to My App</h1>\n            <p>A sample application.</p>\n            <button id=\"cta-btn\" class=\"btn btn-primary\">Get Started</button>\n        </section>",
+          "start_line": 20,
+          "end_line": 24
+        },
+        {
+          "value": "<h1>Welcome to My App</h1>",
+          "start_line": 21,
+          "end_line": 21
+        },
+        {
+          "value": "<p>A sample application.</p>",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "<button id=\"cta-btn\" class=\"btn btn-primary\">Get Started</button>",
+          "start_line": 23,
+          "end_line": 23
+        },
+        {
+          "value": "<section class=\"features\">\n            <div class=\"feature-card\">Fast</div>\n            <div class=\"feature-card\">Reliable</div>\n        </section>",
+          "start_line": 25,
+          "end_line": 28
+        },
+        {
+          "value": "<div class=\"feature-card\">Fast</div>",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "<div class=\"feature-card\">Reliable</div>",
+          "start_line": 27,
+          "end_line": 27
+        },
+        {
+          "value": "<footer>\n        <p>&copy; 2026 My App</p>\n    </footer>",
+          "start_line": 30,
+          "end_line": 32
+        },
+        {
+          "value": "<p>&copy; 2026 My App</p>",
+          "start_line": 31,
+          "end_line": 31
+        }
+      ]
+    }
+  },
+  "sample.java": {
+    "language": "java",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.java",
+    "symbols": {
+      "function": [
+        {
+          "value": "OrderService",
+          "start_line": 7,
+          "end_line": 9
+        },
+        {
+          "value": "getOrders",
+          "start_line": 11,
+          "end_line": 13
+        },
+        {
+          "value": "placeOrder",
+          "start_line": 15,
+          "end_line": 17
+        },
+        {
+          "value": "sendConfirmation",
+          "start_line": 19,
+          "end_line": 19
+        },
+        {
+          "value": "charge",
+          "start_line": 23,
+          "end_line": 25
+        }
+      ],
+      "class": [
+        {
+          "value": "OrderService",
+          "start_line": 4,
+          "end_line": 20
+        },
+        {
+          "value": "PaymentProcessor",
+          "start_line": 22,
+          "end_line": 26
+        }
+      ],
+      "import": [
+        {
+          "value": "import java.util.List;",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "import java.util.ArrayList;",
+          "start_line": 2,
+          "end_line": 2
+        }
+      ]
+    }
+  },
+  "sample.js": {
+    "language": "javascript",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.js",
+    "symbols": {
+      "function": [
+        {
+          "value": "constructor",
+          "start_line": 5,
+          "end_line": 7
+        },
+        {
+          "value": "enqueue",
+          "start_line": 9,
+          "end_line": 11
+        },
+        {
+          "value": "dequeue",
+          "start_line": 13,
+          "end_line": 15
+        },
+        {
+          "value": "size",
+          "start_line": 17,
+          "end_line": 19
+        },
+        {
+          "value": "debounce",
+          "start_line": 22,
+          "end_line": 28
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 30,
+          "end_line": 36
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 32,
+          "end_line": 35
+        }
+      ],
+      "class": [
+        {
+          "value": "Queue",
+          "start_line": 4,
+          "end_line": 20
+        }
+      ],
+      "import": [
+        {
+          "value": "import { readFile } from 'fs';",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "import EventEmitter from 'events';",
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "value": "export { Queue, debounce, throttle };",
+          "start_line": 38,
+          "end_line": 38
+        }
+      ]
+    }
+  },
+  "sample.json": {
+    "language": "json",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.json",
+    "symbols": {
+      "class": [
+        {
+          "value": "\"name\": \"my-app\"",
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "value": "\"version\": \"1.0.0\"",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "\"description\": \"A sample application\"",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "\"main\": \"index.js\"",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "\"scripts\": {\n    \"start\": \"node index.js\",\n    \"dev\": \"nodemon index.js\",\n    \"test\": \"jest --coverage\",\n    \"build\": \"tsc\"\n  }",
+          "start_line": 6,
+          "end_line": 11
+        },
+        {
+          "value": "\"start\": \"node index.js\"",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "\"dev\": \"nodemon index.js\"",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "\"test\": \"jest --coverage\"",
+          "start_line": 9,
+          "end_line": 9
+        },
+        {
+          "value": "\"build\": \"tsc\"",
+          "start_line": 10,
+          "end_line": 10
+        },
+        {
+          "value": "\"dependencies\": {\n    \"express\": \"^4.18.0\",\n    \"lodash\": \"^4.17.21\",\n    \"zod\": \"^3.22.0\"\n  }",
+          "start_line": 12,
+          "end_line": 16
+        },
+        {
+          "value": "\"express\": \"^4.18.0\"",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "\"lodash\": \"^4.17.21\"",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "\"zod\": \"^3.22.0\"",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "\"devDependencies\": {\n    \"typescript\": \"^5.3.0\",\n    \"jest\": \"^29.7.0\",\n    \"@types/express\": \"^4.17.21\"\n  }",
+          "start_line": 17,
+          "end_line": 21
+        },
+        {
+          "value": "\"typescript\": \"^5.3.0\"",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "\"jest\": \"^29.7.0\"",
+          "start_line": 19,
+          "end_line": 19
+        },
+        {
+          "value": "\"@types/express\": \"^4.17.21\"",
+          "start_line": 20,
+          "end_line": 20
+        },
+        {
+          "value": "\"engines\": {\n    \"node\": \">=18.0.0\"\n  }",
+          "start_line": 22,
+          "end_line": 24
+        },
+        {
+          "value": "\"node\": \">=18.0.0\"",
+          "start_line": 23,
+          "end_line": 23
+        }
+      ]
+    }
+  },
+  "sample.kt": {
+    "language": "kotlin",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.kt",
+    "symbols": {
+      "function": [
+        {
+          "value": "acquire",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "release",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "acquire",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "release",
+          "start_line": 16,
+          "end_line": 16
+        },
+        {
+          "value": "resize",
+          "start_line": 19,
+          "end_line": 21
+        },
+        {
+          "value": "getInstance",
+          "start_line": 27,
+          "end_line": 29
+        },
+        {
+          "value": "connect",
+          "start_line": 31,
+          "end_line": 31
+        },
+        {
+          "value": "parseUrl",
+          "start_line": 34,
+          "end_line": 37
+        }
+      ],
+      "class": [
+        {
+          "value": "Config",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "Pool",
+          "start_line": 6,
+          "end_line": 10
+        },
+        {
+          "value": "ConnectionPool",
+          "start_line": 12,
+          "end_line": 22
+        },
+        {
+          "value": "DatabaseManager",
+          "start_line": 24,
+          "end_line": 32
+        }
+      ]
+    }
+  },
+  "sample.lisp": {
+    "language": "commonlisp",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.lisp",
+    "symbols": {
+      "function": [
+        {
+          "value": "<anonymous>",
+          "start_line": 7,
+          "end_line": 10
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 12,
+          "end_line": 16
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 12,
+          "end_line": 12
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 18,
+          "end_line": 22
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 24,
+          "end_line": 26
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 24,
+          "end_line": 24
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 28,
+          "end_line": 29
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 28,
+          "end_line": 28
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 31,
+          "end_line": 35
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 31,
+          "end_line": 31
+        }
+      ]
+    }
+  },
+  "sample.lua": {
+    "language": "lua",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.lua",
+    "symbols": {
+      "function": [
+        {
+          "value": "M.create_server",
+          "start_line": 4,
+          "end_line": 10
+        },
+        {
+          "value": "M.send_request",
+          "start_line": 12,
+          "end_line": 18
+        },
+        {
+          "value": "M.parse_response",
+          "start_line": 20,
+          "end_line": 25
+        },
+        {
+          "value": "M.start",
+          "start_line": 27,
+          "end_line": 30
+        },
+        {
+          "value": "M.stop",
+          "start_line": 32,
+          "end_line": 34
+        }
+      ]
+    }
+  },
+  "sample.m": {
+    "language": "objc",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.m",
+    "symbols": {
+      "function": [
+        {
+          "value": "<anonymous>",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 10,
+          "end_line": 10
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 11,
+          "end_line": 11
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 12,
+          "end_line": 12
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 18,
+          "end_line": 24
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 26,
+          "end_line": 28
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 30,
+          "end_line": 32
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 34,
+          "end_line": 36
+        }
+      ],
+      "class": [
+        {
+          "value": "DataManager",
+          "start_line": 8,
+          "end_line": 14
+        },
+        {
+          "value": "DataManager",
+          "start_line": 16,
+          "end_line": 38
+        }
+      ],
+      "import": [
+        {
+          "value": "#import <Foundation/Foundation.h>",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.makefile": {
+    "language": "make",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.makefile",
+    "symbols": {
+      "function": [
+        {
+          "value": ".PHONY: build test clean run lint docker-build docker-push\n\n",
+          "start_line": 1,
+          "end_line": 3
+        },
+        {
+          "value": "build: $(BINARY)\n\n",
+          "start_line": 6,
+          "end_line": 8
+        },
+        {
+          "value": "$(BINARY): $(SRC)\n\tgo build -o $(BINARY) ./cmd/app\n\n",
+          "start_line": 8,
+          "end_line": 11
+        },
+        {
+          "value": "test:\n\tgo test ./... -v -race -coverprofile=coverage.out\n\n",
+          "start_line": 11,
+          "end_line": 14
+        },
+        {
+          "value": "lint:\n\tgolangci-lint run ./...\n\n",
+          "start_line": 14,
+          "end_line": 17
+        },
+        {
+          "value": "clean:\n\trm -rf bin/ coverage.out\n\n",
+          "start_line": 17,
+          "end_line": 20
+        },
+        {
+          "value": "run: build\n\t./$(BINARY)\n\n",
+          "start_line": 20,
+          "end_line": 23
+        },
+        {
+          "value": "docker-build:\n\tdocker build -t my-app:latest .\n\n",
+          "start_line": 23,
+          "end_line": 26
+        },
+        {
+          "value": "docker-push: docker-build\n\tdocker push my-app:latest\n",
+          "start_line": 26,
+          "end_line": 28
+        }
+      ]
+    }
+  },
+  "sample.md": {
+    "language": "markdown",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.md",
+    "symbols": {
+      "class": [
+        {
+          "value": "# My Project",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "## Overview",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "## Installation",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "## Usage",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "## API Reference",
+          "start_line": 20,
+          "end_line": 20
+        },
+        {
+          "value": "### Functions",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "#### `process(data)`",
+          "start_line": 24,
+          "end_line": 24
+        },
+        {
+          "value": "#### `validate(input)`",
+          "start_line": 28,
+          "end_line": 28
+        },
+        {
+          "value": "## Contributing",
+          "start_line": 32,
+          "end_line": 32
+        },
+        {
+          "value": "## License",
+          "start_line": 36,
+          "end_line": 36
+        }
+      ]
+    }
+  },
+  "sample.ml": {
+    "language": "ocaml",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.ml",
+    "symbols": {
+      "function": [
+        {
+          "value": "let distance p1 p2 =\n    let dx = p1.x -. p2.x in\n    let dy = p1.y -. p2.y in\n    sqrt (dx *. dx +. dy *. dy)",
+          "start_line": 7,
+          "end_line": 10
+        },
+        {
+          "value": "let dx = p1.x -. p2.x",
+          "start_line": 8,
+          "end_line": 8
+        },
+        {
+          "value": "let dy = p1.y -. p2.y",
+          "start_line": 9,
+          "end_line": 9
+        },
+        {
+          "value": "let find_nearest points target =\n    fold_left (fun acc p ->\n        if distance p target < distance acc target then p else acc\n    ) (hd points) (tl points)",
+          "start_line": 12,
+          "end_line": 15
+        },
+        {
+          "value": "let map_points f pts =\n    map f pts",
+          "start_line": 17,
+          "end_line": 18
+        },
+        {
+          "value": "let color_to_string = function\n    | Red   -> \"red\"\n    | Green -> \"green\"\n    | Blue  -> \"blue\"",
+          "start_line": 20,
+          "end_line": 23
+        },
+        {
+          "value": "let () =\n    let p1 = { x = 0.0; y = 0.0 } in\n    let p2 = { x = 3.0; y = 4.0 } in\n    printf \"Distance: %f\\n\" (distance p1 p2)",
+          "start_line": 25,
+          "end_line": 28
+        },
+        {
+          "value": "let p1 = { x = 0.0; y = 0.0 }",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "let p2 = { x = 3.0; y = 4.0 }",
+          "start_line": 27,
+          "end_line": 27
+        }
+      ],
+      "import": [
+        {
+          "value": "open Printf",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "open List",
+          "start_line": 2,
+          "end_line": 2
+        }
+      ]
+    }
+  },
+  "sample.mod": {
+    "language": "gomod",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.mod",
+    "symbols": {
+      "import": [
+        {
+          "value": "module github.com/example/myapp",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.php": {
+    "language": "php",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.php",
+    "symbols": {
+      "function": [
+        {
+          "value": "sanitize_input",
+          "start_line": 38,
+          "end_line": 40
+        },
+        {
+          "value": "generate_token",
+          "start_line": 42,
+          "end_line": 44
+        }
+      ],
+      "class": [
+        {
+          "value": "UserService",
+          "start_line": 12,
+          "end_line": 36
+        }
+      ],
+      "import": [
+        {
+          "value": "use App\\Models\\User;",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "use App\\Exceptions\\NotFoundException;",
+          "start_line": 5,
+          "end_line": 5
+        }
+      ]
+    }
+  },
+  "sample.pl": {
+    "language": "perl",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.pl",
+    "symbols": {
+      "function": [
+        {
+          "value": "new",
+          "start_line": 8,
+          "end_line": 15
+        },
+        {
+          "value": "parse_config",
+          "start_line": 17,
+          "end_line": 24
+        },
+        {
+          "value": "validate_data",
+          "start_line": 26,
+          "end_line": 29
+        },
+        {
+          "value": "format_output",
+          "start_line": 31,
+          "end_line": 34
+        }
+      ],
+      "class": [
+        {
+          "value": "package MyApp::Utils;",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "import": [
+        {
+          "value": "use strict;",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "use warnings;",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "use JSON;",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "use POSIX qw(floor ceil);",
+          "start_line": 6,
+          "end_line": 6
+        }
+      ]
+    }
+  },
+  "sample.py": {
+    "language": "python",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.py",
+    "symbols": {
+      "function": [
+        {
+          "value": "__init__",
+          "start_line": 5,
+          "end_line": 6
+        },
+        {
+          "value": "get_user",
+          "start_line": 8,
+          "end_line": 9
+        },
+        {
+          "value": "delete_user",
+          "start_line": 11,
+          "end_line": 12
+        },
+        {
+          "value": "hash_password",
+          "start_line": 14,
+          "end_line": 15
+        },
+        {
+          "value": "send_email",
+          "start_line": 17,
+          "end_line": 18
+        }
+      ],
+      "class": [
+        {
+          "value": "UserManager",
+          "start_line": 4,
+          "end_line": 12
+        }
+      ],
+      "import": [
+        {
+          "value": "import os",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "from typing import List",
+          "start_line": 2,
+          "end_line": 2
+        }
+      ]
+    }
+  },
+  "sample.r": {
+    "language": "r",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.r",
+    "symbols": {
+      "function": [
+        {
+          "value": "<anonymous>",
+          "start_line": 4,
+          "end_line": 7
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 9,
+          "end_line": 16
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 18,
+          "end_line": 21
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 23,
+          "end_line": 28
+        }
+      ]
+    }
+  },
+  "sample.rb": {
+    "language": "ruby",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.rb",
+    "symbols": {
+      "function": [
+        {
+          "value": "format_output",
+          "start_line": 5,
+          "end_line": 7
+        },
+        {
+          "value": "parse_input",
+          "start_line": 9,
+          "end_line": 11
+        },
+        {
+          "value": "initialize",
+          "start_line": 17,
+          "end_line": 20
+        },
+        {
+          "value": "process",
+          "start_line": 22,
+          "end_line": 25
+        },
+        {
+          "value": "validate",
+          "start_line": 27,
+          "end_line": 29
+        },
+        {
+          "value": "transform",
+          "start_line": 33,
+          "end_line": 35
+        },
+        {
+          "value": "fetch",
+          "start_line": 39,
+          "end_line": 41
+        },
+        {
+          "value": "parse_args",
+          "start_line": 44,
+          "end_line": 49
+        }
+      ],
+      "class": [
+        {
+          "value": "Formatter",
+          "start_line": 4,
+          "end_line": 12
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "DataProcessor",
+          "start_line": 14,
+          "end_line": 36
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "ApiClient",
+          "start_line": 38,
+          "end_line": 42
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 38,
+          "end_line": 38
+        }
+      ]
+    }
+  },
+  "sample.regex": {
+    "language": "regex",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.regex",
+    "symbols": {
+      "class": [
+        {
+          "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n^\\+?[1-9]\\d{1,14}$\n^(https?|ftp)://[^\\s/$.?#].[^\\s]*$\n^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?)?$\n^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\n",
+          "start_line": 1,
+          "end_line": 6
+        },
+        {
+          "value": "https?|ftp",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "\\.\\d+",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "Z|[+-]\\d{2}:\\d{2}",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": ".*[A-Z]",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": ".*[a-z]",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": ".*\\d",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": ".*[@$!%*?&]",
+          "start_line": 5,
+          "end_line": 5
+        }
+      ]
+    }
+  },
+  "sample.rs": {
+    "language": "rust",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.rs",
+    "symbols": {
+      "function": [
+        {
+          "value": "new",
+          "start_line": 9,
+          "end_line": 14
+        },
+        {
+          "value": "get",
+          "start_line": 16,
+          "end_line": 18
+        },
+        {
+          "value": "set",
+          "start_line": 20,
+          "end_line": 22
+        },
+        {
+          "value": "compute_hash",
+          "start_line": 25,
+          "end_line": 27
+        }
+      ],
+      "class": [
+        {
+          "value": "Cache",
+          "start_line": 3,
+          "end_line": 6
+        }
+      ],
+      "impl": [
+        {
+          "value": "Cache",
+          "start_line": 8,
+          "end_line": 23
+        }
+      ],
+      "import": [
+        {
+          "value": "use std::collections::HashMap;",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.scala": {
+    "language": "scala",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.scala",
+    "symbols": {
+      "function": [
+        {
+          "value": "findById",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "findAll",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "save",
+          "start_line": 15,
+          "end_line": 15
+        },
+        {
+          "value": "delete",
+          "start_line": 16,
+          "end_line": 16
+        },
+        {
+          "value": "formatRecord",
+          "start_line": 20,
+          "end_line": 20
+        },
+        {
+          "value": "groupByTag",
+          "start_line": 22,
+          "end_line": 27
+        },
+        {
+          "value": "processRecords",
+          "start_line": 30,
+          "end_line": 32
+        }
+      ],
+      "class": [
+        {
+          "value": "Record",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "Repository",
+          "start_line": 10,
+          "end_line": 17
+        },
+        {
+          "value": "Utils",
+          "start_line": 19,
+          "end_line": 28
+        }
+      ],
+      "import": [
+        {
+          "value": "import scala.collection.mutable.{Map, ArrayBuffer}",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.sh": {
+    "language": "bash",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.sh",
+    "symbols": {
+      "function": [
+        {
+          "value": "setup_environment",
+          "start_line": 4,
+          "end_line": 7
+        },
+        {
+          "value": "check_dependencies",
+          "start_line": 9,
+          "end_line": 14
+        },
+        {
+          "value": "deploy_service",
+          "start_line": 16,
+          "end_line": 21
+        },
+        {
+          "value": "wait_for_ready",
+          "start_line": 23,
+          "end_line": 27
+        },
+        {
+          "value": "cleanup",
+          "start_line": 29,
+          "end_line": 32
+        }
+      ]
+    }
+  },
+  "sample.sql": {
+    "language": "sql",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.sql",
+    "symbols": {
+      "function": [
+        {
+          "value": "<anonymous>",
+          "start_line": 15,
+          "end_line": 20
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 22,
+          "end_line": 27
+        }
+      ]
+    }
+  },
+  "sample.tf": {
+    "language": "hcl",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.tf",
+    "symbols": {
+      "class": [
+        {
+          "value": "resource \"aws_instance\" \"web\" {\n  ami           = \"ami-0c55b159cbfafe1f0\"\n  instance_type = \"t3.micro\"\n\n  tags = {\n    Name        = \"web-server\"\n    Environment = \"production\"\n  }\n}",
+          "start_line": 1,
+          "end_line": 9
+        },
+        {
+          "value": "resource \"aws_s3_bucket\" \"data\" {\n  bucket = \"my-app-data-bucket\"\n}",
+          "start_line": 11,
+          "end_line": 13
+        },
+        {
+          "value": "resource \"aws_security_group\" \"web_sg\" {\n  name        = \"web-sg\"\n  description = \"Security group for web servers\"\n\n  ingress {\n    from_port   = 443\n    to_port     = 443\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n}",
+          "start_line": 15,
+          "end_line": 25
+        },
+        {
+          "value": "ingress {\n    from_port   = 443\n    to_port     = 443\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }",
+          "start_line": 19,
+          "end_line": 24
+        },
+        {
+          "value": "variable \"region\" {\n  type    = string\n  default = \"us-east-1\"\n}",
+          "start_line": 27,
+          "end_line": 30
+        },
+        {
+          "value": "variable \"instance_count\" {\n  type    = number\n  default = 2\n}",
+          "start_line": 32,
+          "end_line": 35
+        },
+        {
+          "value": "output \"web_ip\" {\n  value = aws_instance.web.public_ip\n}",
+          "start_line": 37,
+          "end_line": 39
+        }
+      ]
+    }
+  },
+  "sample.toml": {
+    "language": "toml",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.toml",
+    "symbols": {
+      "class": [
+        {
+          "value": "[package]\nname = \"my-crate\"\nversion = \"0.1.0\"\nedition = \"2021\"\nauthors = [\"Dev <dev@example.com>\"]\ndescription = \"A sample Rust crate\"\n\n",
+          "start_line": 1,
+          "end_line": 8
+        },
+        {
+          "value": "name = \"my-crate\"",
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "value": "version = \"0.1.0\"",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "edition = \"2021\"",
+          "start_line": 4,
+          "end_line": 4
+        },
+        {
+          "value": "authors = [\"Dev <dev@example.com>\"]",
+          "start_line": 5,
+          "end_line": 5
+        },
+        {
+          "value": "description = \"A sample Rust crate\"",
+          "start_line": 6,
+          "end_line": 6
+        },
+        {
+          "value": "[lib]\nname = \"my_crate\"\npath = \"src/lib.rs\"\n\n",
+          "start_line": 8,
+          "end_line": 12
+        },
+        {
+          "value": "name = \"my_crate\"",
+          "start_line": 9,
+          "end_line": 9
+        },
+        {
+          "value": "path = \"src/lib.rs\"",
+          "start_line": 10,
+          "end_line": 10
+        },
+        {
+          "value": "name = \"cli\"",
+          "start_line": 13,
+          "end_line": 13
+        },
+        {
+          "value": "path = \"src/main.rs\"",
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "value": "[dependencies]\nserde = { version = \"1.0\", features = [\"derive\"] }\ntokio = { version = \"1.0\", features = [\"full\"] }\nanyhow = \"1.0\"\n\n",
+          "start_line": 16,
+          "end_line": 21
+        },
+        {
+          "value": "serde = { version = \"1.0\", features = [\"derive\"] }",
+          "start_line": 17,
+          "end_line": 17
+        },
+        {
+          "value": "version = \"1.0\"",
+          "start_line": 17,
+          "end_line": 17
+        },
+        {
+          "value": "features = [\"derive\"]",
+          "start_line": 17,
+          "end_line": 17
+        },
+        {
+          "value": "tokio = { version = \"1.0\", features = [\"full\"] }",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "version = \"1.0\"",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "features = [\"full\"]",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "anyhow = \"1.0\"",
+          "start_line": 19,
+          "end_line": 19
+        },
+        {
+          "value": "[dev-dependencies]\nmockall = \"0.11\"\ncriterion = \"0.5\"\n\n",
+          "start_line": 21,
+          "end_line": 25
+        },
+        {
+          "value": "mockall = \"0.11\"",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "criterion = \"0.5\"",
+          "start_line": 23,
+          "end_line": 23
+        },
+        {
+          "value": "[profile.release]\nopt-level = 3\nlto = true\n",
+          "start_line": 25,
+          "end_line": 28
+        },
+        {
+          "value": "opt-level = 3",
+          "start_line": 26,
+          "end_line": 26
+        },
+        {
+          "value": "lto = true",
+          "start_line": 27,
+          "end_line": 27
+        }
+      ]
+    }
+  },
+  "sample.ts": {
+    "language": "typescript",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.ts",
+    "symbols": {
+      "function": [
+        {
+          "value": "constructor",
+          "start_line": 12,
+          "end_line": 14
+        },
+        {
+          "value": "login",
+          "start_line": 16,
+          "end_line": 18
+        },
+        {
+          "value": "logout",
+          "start_line": 20,
+          "end_line": 20
+        },
+        {
+          "value": "validateEmail",
+          "start_line": 23,
+          "end_line": 25
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 27,
+          "end_line": 29
+        }
+      ],
+      "class": [
+        {
+          "value": "AuthService",
+          "start_line": 9,
+          "end_line": 21
+        }
+      ],
+      "import": [
+        {
+          "value": "import { Request, Response } from \"express\";",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ]
+    }
+  },
+  "sample.tsx": {
+    "language": "tsx",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.tsx",
+    "symbols": {
+      "function": [
+        {
+          "value": "componentDidCatch",
+          "start_line": 12,
+          "end_line": 14
+        },
+        {
+          "value": "render",
+          "start_line": 16,
+          "end_line": 18
+        },
+        {
+          "value": "Button",
+          "start_line": 21,
+          "end_line": 27
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 29,
+          "end_line": 33
+        },
+        {
+          "value": "<anonymous>",
+          "start_line": 31,
+          "end_line": 31
+        }
+      ],
+      "class": [
+        {
+          "value": "ErrorBoundary",
+          "start_line": 9,
+          "end_line": 19
+        }
+      ],
+      "import": [
+        {
+          "value": "import React, { useState, useEffect } from 'react';",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "export { Button, Modal, ErrorBoundary };",
+          "start_line": 35,
+          "end_line": 35
+        }
+      ]
+    }
+  },
+  "sample.yaml": {
+    "language": "yaml",
+    "file": "/Users/anmoltuteja/Desktop/Nexis/testing-repomap/sample.yaml",
+    "symbols": {
+      "class": [
+        {
+          "value": "name: my-app",
+          "start_line": 1,
+          "end_line": 1
+        },
+        {
+          "value": "version: \"1.0\"",
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "value": "description: A sample application",
+          "start_line": 3,
+          "end_line": 3
+        },
+        {
+          "value": "services:\n  web:\n    image: nginx:1.25\n    ports:\n      - \"80:80\"\n      - \"443:443\"\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf\n    depends_on:\n      - api\n\n  api:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    environment:\n      DATABASE_URL: postgres://admin:secret@db:5432/mydb\n      REDIS_URL: redis://cache:6379\n    ports:\n      - \"8000:8000\"\n\n  db:\n    image: postgres:15\n    environment:\n      POSTGRES_DB: mydb\n      POSTGRES_USER: admin\n      POSTGRES_PASSWORD: secret\n    volumes:\n      - db_data:/var/lib/postgresql/data",
+          "start_line": 5,
+          "end_line": 33
+        },
+        {
+          "value": "web:\n    image: nginx:1.25\n    ports:\n      - \"80:80\"\n      - \"443:443\"\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf\n    depends_on:\n      - api",
+          "start_line": 6,
+          "end_line": 14
+        },
+        {
+          "value": "image: nginx:1.25",
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "value": "ports:\n      - \"80:80\"\n      - \"443:443\"",
+          "start_line": 8,
+          "end_line": 10
+        },
+        {
+          "value": "volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf",
+          "start_line": 11,
+          "end_line": 12
+        },
+        {
+          "value": "depends_on:\n      - api",
+          "start_line": 13,
+          "end_line": 14
+        },
+        {
+          "value": "api:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    environment:\n      DATABASE_URL: postgres://admin:secret@db:5432/mydb\n      REDIS_URL: redis://cache:6379\n    ports:\n      - \"8000:8000\"",
+          "start_line": 16,
+          "end_line": 24
+        },
+        {
+          "value": "build:\n      context: .\n      dockerfile: Dockerfile",
+          "start_line": 17,
+          "end_line": 19
+        },
+        {
+          "value": "context: .",
+          "start_line": 18,
+          "end_line": 18
+        },
+        {
+          "value": "dockerfile: Dockerfile",
+          "start_line": 19,
+          "end_line": 19
+        },
+        {
+          "value": "environment:\n      DATABASE_URL: postgres://admin:secret@db:5432/mydb\n      REDIS_URL: redis://cache:6379",
+          "start_line": 20,
+          "end_line": 22
+        },
+        {
+          "value": "DATABASE_URL: postgres://admin:secret@db:5432/mydb",
+          "start_line": 21,
+          "end_line": 21
+        },
+        {
+          "value": "REDIS_URL: redis://cache:6379",
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "value": "ports:\n      - \"8000:8000\"",
+          "start_line": 23,
+          "end_line": 24
+        },
+        {
+          "value": "db:\n    image: postgres:15\n    environment:\n      POSTGRES_DB: mydb\n      POSTGRES_USER: admin\n      POSTGRES_PASSWORD: secret\n    volumes:\n      - db_data:/var/lib/postgresql/data",
+          "start_line": 26,
+          "end_line": 33
+        },
+        {
+          "value": "image: postgres:15",
+          "start_line": 27,
+          "end_line": 27
+        },
+        {
+          "value": "environment:\n      POSTGRES_DB: mydb\n      POSTGRES_USER: admin\n      POSTGRES_PASSWORD: secret",
+          "start_line": 28,
+          "end_line": 31
+        },
+        {
+          "value": "POSTGRES_DB: mydb",
+          "start_line": 29,
+          "end_line": 29
+        },
+        {
+          "value": "POSTGRES_USER: admin",
+          "start_line": 30,
+          "end_line": 30
+        },
+        {
+          "value": "POSTGRES_PASSWORD: secret",
+          "start_line": 31,
+          "end_line": 31
+        },
+        {
+          "value": "volumes:\n      - db_data:/var/lib/postgresql/data",
+          "start_line": 32,
+          "end_line": 33
+        },
+        {
+          "value": "volumes:\n  db_data:\n",
+          "start_line": 35,
+          "end_line": 37
+        },
+        {
+          "value": "db_data:",
+          "start_line": 36,
+          "end_line": 36
+        }
+      ]
+    }
+  }
+}
