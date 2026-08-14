@@ -1,0 +1,19 @@
+- when ask to see something on Desktop it failed, required further prompting, fix system prompt for that
+- multithreading for parallel tool calls
+- steam response
+- sometimes agent gives up too early, so need to add some kind of checks preventing that
+- add prompt cashing 
+- truncate tool results after a threshold
+- better ui
+- adding scratchboard
+- fix system prompt
+- subaggent support
+- mcp/skill/Agent.md support
+- making compact func
+- removing unecessary files
+- session resume (local session write)
+- / commands to clear, exit, compact, usage etc
+- choosing model via cli without changing config
+- install.sh and website to download
+- publish as package, version release
+- sandbox (it should be able to escape sandbox lol for the sake of game)

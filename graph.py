@@ -7,7 +7,6 @@ from utils.print_utils import print_agent, print_error, print_token_usage
 from utils.prune_messages import prune_messages
 from utils.run_tool_calls import run_tool_calls
 
-
 class State(TypedDict):
     messages: list
 

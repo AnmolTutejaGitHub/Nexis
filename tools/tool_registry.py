@@ -9,6 +9,7 @@ from tools.code_navigation.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
 from tools.ask_human import ask_human
 from tools.read_observation import read_observation
+from tools.glob import glob_files
 
 
 TOOL_REGISTRY = {
@@ -224,6 +225,31 @@ TOOL_REGISTRY = {
                     "required": ["observation_id"]
                 }
             }
+        }
+    },
+    "glob_files": {
+        "fn": glob_files,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "glob_files",
+                "description": "Find files matching a glob pattern.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The glob pattern to match (e.g. '**/*.py').",
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "The directory to search in. Defaults to current directory.",
+                            "default": ".",
+                        },
+                    },
+                    "required": ["pattern"],
+                },
+            },
         }
     },
 }
