@@ -47,7 +47,7 @@ def get_repomap(path):
     try:
         language = get_language(lang)
     except Exception as e:
-        return {"error": f"Grammar not available for {lang}: {e[:500]}"}
+        return {"error": f"Grammar not available for {lang}: {str(e)[:500]}"}
 
     parser = Parser()
     parser.set_language(language)

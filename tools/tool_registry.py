@@ -15,15 +15,17 @@ from tools.glob import glob_files
 TOOL_REGISTRY = {
     "read_file": {
         "fn": read_file,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "read_file",
-                "description": "Read the full contents of a file. Use ONLY as a last resort when read_file_range cannot be used. For source code, call get_repomap first when possible.",
+                "description": "Read a file from the start. Returns up to 400 lines by default; if the file is longer the result says so, and you can pass a higher limit or use read_file_range for a specific section. Takes a file, not a directory — use list_files for a directory. Prefer read_file_range when you already know which part you need. Call in parallel when you want several files.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "path": {"type": "string", "description": "Absolute or relative path of the file to read."}
+                        "path": {"type": "string", "description": "Absolute or relative path of the file to read."},
+                        "limit": {"type": "integer", "description": "Maximum lines to return. Defaults to 400. Raise it only when you genuinely need more of a large file."}
                     },
                     "required": ["path"]
                 }
@@ -33,11 +35,12 @@ TOOL_REGISTRY = {
 
     "read_file_range": {
         "fn": read_file_range,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "read_file_range",
-                "description": "Read a range of lines from a file. Always call this before edit_file so you have the exact text to use as old_str. For source code, prefer this after get_repomap.",
+                "description": "Read a specific range of lines from a file. Line numbers are 1-indexed and inclusive; a range past the end of the file is clamped rather than an error. get_repomap returns each symbol's start_line and end_line — pass those here to read just one function or class instead of the whole file. Always read the target lines before edit_file so you have the exact text for old_str. Call in parallel when you need ranges from several files.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -53,11 +56,12 @@ TOOL_REGISTRY = {
 
     "edit_file": {
         "fn": edit_file,
+        "parallel_safe": False,
         "schema": {
             "type": "function",
             "function": {
                 "name": "edit_file",
-                "description": "Edit a file by replacing an exact string match, or overwrite the whole file when old_str is empty. Call read_file_range or read_file first for targeted edits.",
+                "description": "Edit a file by replacing an exact string match, or overwrite the whole file when old_str is empty. old_str must appear EXACTLY ONCE — include surrounding lines to make it unique, or the edit is rejected and you are shown the ambiguous region. Read the target lines first so old_str matches byte for byte, including indentation. The user sees a diff and can reject the edit.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -73,11 +77,12 @@ TOOL_REGISTRY = {
 
     "create_path": {
         "fn": create_path,
+        "parallel_safe": False,
         "schema": {
             "type": "function",
             "function": {
                 "name": "create_path",
-                "description": "Create a new file (with optional content) or a new directory.",
+                "description": "Create a new file (with optional content) or a new directory. The parent directory must already exist — create it first with type 'folder' if it does not. Use edit_file to change a file that already exists.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -93,11 +98,12 @@ TOOL_REGISTRY = {
 
     "delete_path": {
         "fn": delete_path,
+        "parallel_safe": False,
         "schema": {
             "type": "function",
             "function": {
                 "name": "delete_path",
-                "description": "Permanently delete a file or directory. Directories are deleted recursively.",
+                "description": "Permanently delete a file or directory; directories go recursively and there is no undo. The user is asked to confirm. Only delete when the user asked for it — do not clean up files you merely think are unused.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -111,11 +117,12 @@ TOOL_REGISTRY = {
 
     "list_files": {
         "fn": list_files,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "list_files",
-                "description": "List files and folders inside a directory (one level deep). Common build artefacts, caches, dependency trees, and IDE folders are excluded by default.",
+                "description": "List the contents of one directory, one level deep. Directories end in '/' and files show their size, e.g. 'config.py (452b)' — use that to judge how expensive a file is to read. Build artefacts, caches, images and IDE folders are excluded by default and reported as a 'hidden' count; pass include_hidden or include_ignored to see them. Use glob_files to search recursively.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -130,6 +137,10 @@ TOOL_REGISTRY = {
                         "include_ignored": {
                             "type": "boolean",
                             "description": "If true, include paths that would normally be excluded (caches, build dirs, node_modules, etc.). Defaults to false."
+                        },
+                        "limit": {
+                            "type": "integer",
+                            "description": "Maximum entries to return. Defaults to 100. Raise it when you genuinely need the full listing of a large directory."
                         }
                     },
                     "required": ["path"]
@@ -140,11 +151,12 @@ TOOL_REGISTRY = {
 
     "bash_access": {
         "fn": bash_access,
+        "parallel_safe": False,
         "schema": {
             "type": "function",
             "function": {
                 "name": "bash_access",
-                "description": "Execute a shell command. Use for running tests, installing packages, or inspecting the environment. Avoid destructive commands.",
+                "description": "Execute a shell command. Full shell interpretation is available — chain independent probes with && or ; and filter with pipes to answer several questions in one call rather than several. Use for running tests, installing packages, or inspecting the environment. Avoid destructive commands.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -158,11 +170,12 @@ TOOL_REGISTRY = {
 
     "web_search": {
         "fn": web_search,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "web_search",
-                "description": "Search the web for up-to-date information such as docs, error explanations, or API references.",
+                "description": "Search the web and return results. Use it when you need information that is not in this workspace: a library's current API, an unfamiliar error message, or a term, flag or tool you are not confident about. Do not use it for anything answerable by reading this project's code — read the code instead.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -176,11 +189,12 @@ TOOL_REGISTRY = {
     
     "get_repomap": {
         "fn": get_repomap,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "get_repomap",
-                "description": "Get the repomap of a file. Use this before reading source code when possible.",
+                "description": "Get the structure of ONE source file that you already know exists — its functions, classes and imports with their line ranges — so you can decide which part of that file to read. Takes a single file path: it does not accept directories and is not a way to find files — use glob_files to locate a file. Don't call it on a small file, on a file you're going to read in full anyway, or on one you've already read.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -194,6 +208,7 @@ TOOL_REGISTRY = {
 
     "ask_human": {
         "fn": ask_human,
+        "parallel_safe": False,
         "schema": {
             "type": "function",
             "function": {
@@ -212,6 +227,7 @@ TOOL_REGISTRY = {
 
     "read_observation": {
         "fn": read_observation,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
@@ -229,11 +245,12 @@ TOOL_REGISTRY = {
     },
     "glob_files": {
         "fn": glob_files,
+        "parallel_safe": True,
         "schema": {
             "type": "function",
             "function": {
                 "name": "glob_files",
-                "description": "Find files matching a glob pattern.",
+                "description": "Find files matching a glob pattern. Returns matching paths sorted, up to 100 by default. Files ignored by the project's .gitignore are skipped unless include_ignored is true. Patterns are gitignore-style, so '*.py' matches at any depth. Call in parallel when you have several independent patterns to try.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -245,6 +262,14 @@ TOOL_REGISTRY = {
                             "type": "string",
                             "description": "The directory to search in. Defaults to current directory.",
                             "default": ".",
+                        },
+                        "limit": {
+                            "type": "integer",
+                            "description": "Maximum results to return. Defaults to 100. Raise it when you genuinely need every match.",
+                        },
+                        "include_ignored": {
+                            "type": "boolean",
+                            "description": "If true, also search hidden files and paths excluded by .gitignore (node_modules, build output, virtualenvs). Defaults to false.",
                         },
                     },
                     "required": ["pattern"],

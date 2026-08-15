@@ -8,13 +8,7 @@ def create_path(path, type="file", content=""):
             with open(path, "w") as f:
                 f.write(content)
 
-        return {
-            "success": True,
-            "message": f"Created {path} ({type})"
-        }
+        return f"Created {path} ({type})"
 
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e)[:500]
-        }
+        return f"Error: {str(e)[:500]}"

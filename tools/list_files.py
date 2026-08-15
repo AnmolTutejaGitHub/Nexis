@@ -51,13 +51,54 @@ DEFAULT_EXCLUDE_PATTERNS = [
     "Thumbs.db",
 
     ".terraform",
-    ".next",    
+    ".next",
     ".nuxt",
     ".serverless",
-    "coverage", 
+    "coverage",
     "htmlcov",
     "*.log",
+
+    ".turbo",
+    ".vercel",
+    ".svelte-kit",
+    ".astro",
+    ".ipynb_checkpoints",
+
+    "*.pyc",
+    "*.pyo",
+    "*.min.js",
+    "*.map",
+    "*.snap",
+
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.ico",
+    "*.webp",
+    "*.svg",
+    "*.pdf",
+    "*.mp4",
+    "*.mov",
+    "*.mp3",
+    "*.wav",
+
+    "*.woff",
+    "*.woff2",
+    "*.ttf",
+    "*.eot",
+
+    "*.zip",
+    "*.tar",
+    "*.gz",
+    "*.tgz",
+    "*.7z",
+    "*.rar",
+    "*.jar",
 ]
+
+
+LIMIT = 100
 
 
 def is_excluded(name):
@@ -67,7 +108,7 @@ def is_excluded(name):
     return False
 
 
-def list_files(path,include_hidden=False,include_ignored=False):
+def list_files(path,include_hidden=False,include_ignored=False,limit=LIMIT):
     try:
         items = os.listdir(path)
 
@@ -83,16 +124,29 @@ def list_files(path,include_hidden=False,include_ignored=False):
                 continue
 
             full_path = os.path.join(path, name)
-            result.append(f"{name}/" if os.path.isdir(full_path) else name)
 
-        return {
-            "success": True,
-            "path": path,
-            "items": result,
-        }
+            if os.path.isdir(full_path):
+                result.append(f"{name}/")
+                continue
+
+            try:
+                result.append(f"{name} ({os.path.getsize(full_path)}b)")
+            except OSError:
+                result.append(name)
+
+        lines = [path, *result[:limit]]
+
+        if len(result) > limit:
+            lines.append(
+                f"(Showing first {limit} of {len(result)} entries. "
+                "List a more specific path, or call again with a higher limit "
+                "if you need the rest.)"
+            )
+
+        if skipped:
+            lines.append(f"({len(skipped)} entries excluded as hidden or ignored)")
+
+        return "\n".join(lines)
 
     except Exception as e:
-        return {
-            "success": False,
-            "error": str(e)[:500]
-        }
+        return f"Error: {str(e)[:500]}"

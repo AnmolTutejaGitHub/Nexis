@@ -14,15 +14,17 @@ def bash_access(command: str):
                 text=True
             )
 
-            return {
-                "stdout": result.stdout,
-                "stderr": result.stderr,
-                "returncode": result.returncode
-            }
-        
-        return {
-            "error" : f"Permission denied to run command {command}"
-        }
+            parts = []
+            if result.stdout:
+                parts.append(result.stdout.rstrip())
+            if result.stderr:
+                parts.append(f"stderr: {result.stderr.rstrip()}")
+            if result.returncode:
+                parts.append(f"exit {result.returncode}")
+
+            return "\n".join(parts) or "(no output)"
+
+        return f"Error: permission denied to run command {command}"
 
     except Exception as e:
-        return {"error": str(e)[:500]}
+        return f"Error: {str(e)[:500]}"
