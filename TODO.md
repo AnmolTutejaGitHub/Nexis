@@ -55,6 +55,9 @@ so maybe i can implement similar behaviour instead of list_files
 ```bash
 Bash(cd ~/Desktop/"Harness - Examples"/codex && rg -n "session_id" codex-rs/core/src/rollout/recorder.rs 2>/dev/null | head -10; echo "=== resume path ==="; rg -rn "fn resume" -g '*.rs' codex-rs/core/src/ | head -10)
 ```
+- Implement Task Management tools / plan mode also
+- user can message in between agent is processing 
+- modelusage, startsession, stop session as events, thinking
 
 ## On multi-line paste firing one model call per line:
 

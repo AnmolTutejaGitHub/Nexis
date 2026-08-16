@@ -3,7 +3,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 
-def preview_edit(path: str,old_str: str,new_str: str) -> bool:
+def render_diff(path: str, old_str: str, new_str: str) -> None:
     diff_text = Text()
 
     for line in old_str.splitlines():
@@ -17,6 +17,25 @@ def preview_edit(path: str,old_str: str,new_str: str) -> bool:
         border_style="#f59e0b",
         padding=(0,1)
     ))
+
+
+def show_preview(params: dict) -> None:
+    path = params.get("path", "")
+    old_str = params.get("old_str", "")
+    new_str = params.get("new_str", "")
+
+    if not old_str:
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                old_str = f.read()
+        except OSError:
+            old_str = ""
+
+    render_diff(path, old_str, new_str)
+
+
+def preview_edit(path: str,old_str: str,new_str: str) -> bool:
+    render_diff(path, old_str, new_str)
 
     print_agent("Accept this edit? (y/n)")
     print_user_prompt()

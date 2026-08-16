@@ -6,10 +6,10 @@ def edit_file(path: str, old_str: str = "", new_str: str = ""):
             original = f.read()
 
         if old_str == "":
-            accepted = preview_edit(path,original,new_str)
+            # accepted = preview_edit(path,original,new_str)
 
-            if not accepted:
-                return f"Error: file update rejected by user: {path}"
+            # if not accepted:
+                # return f"Error: file update rejected by user: {path}"
 
             with open(path, "w", encoding="utf-8") as f:
                 f.write(new_str)
@@ -38,20 +38,22 @@ def edit_file(path: str, old_str: str = "", new_str: str = ""):
                 f"matches exactly one location:\n\n{context_snippet}"
             )
 
-        accepted = preview_edit(path, old_str, new_str)
+        # accepted = preview_edit(path, old_str, new_str)
 
-        if not accepted:
-            return f"Error: edit rejected by user: {path}"
+        # if not accepted:
+        #     return f"Error: edit rejected by user: {path}"
 
         updated = original.replace(old_str, new_str, 1)
 
         with open(path, "w", encoding="utf-8") as f:
             f.write(updated)
 
-        old_preview = "\n".join(f"- {l}" for l in old_str.splitlines())
-        new_preview = "\n".join(f"+ {l}" for l in new_str.splitlines())
+        # old_preview = "\n".join(f"- {l}" for l in old_str.splitlines())
+        # new_preview = "\n".join(f"+ {l}" for l in new_str.splitlines())
 
-        return f"File edited: {path}\n{old_preview}\n{new_preview}"
+        # return f"File edited: {path}\n{old_preview}\n{new_preview}"
+
+        return f"File edited: {path}"
 
     except FileNotFoundError:
         return f"Error: file not found: {path}"

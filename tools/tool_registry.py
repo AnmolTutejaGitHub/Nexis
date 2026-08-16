@@ -10,6 +10,7 @@ from tools.read_file import read_file_range
 from tools.ask_human import ask_human
 from tools.read_observation import read_observation
 from tools.glob import glob_files
+from utils.human_feedback.preview_edit import show_preview
 
 
 TOOL_REGISTRY = {
@@ -57,6 +58,7 @@ TOOL_REGISTRY = {
     "edit_file": {
         "fn": edit_file,
         "parallel_safe": False,
+        "approval": lambda params: (show_preview(params), "Accept this edit? (y/n)")[1],
         "schema": {
             "type": "function",
             "function": {
@@ -99,6 +101,7 @@ TOOL_REGISTRY = {
     "delete_path": {
         "fn": delete_path,
         "parallel_safe": False,
+        "approval": "About to delete\n{path}\nAllow? (y/n)",
         "schema": {
             "type": "function",
             "function": {
@@ -152,6 +155,7 @@ TOOL_REGISTRY = {
     "bash_access": {
         "fn": bash_access,
         "parallel_safe": False,
+        "approval": "About to run:\n{command}\nAllow? (y/n)",
         "schema": {
             "type": "function",
             "function": {

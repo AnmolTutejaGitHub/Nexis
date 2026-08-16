@@ -6,9 +6,12 @@ from tools.tool_registry import get_tool_schemas
 from utils.print_utils import print_agent, print_error, print_token_usage
 from utils.prune_messages import prune_messages
 from utils.run_tool_calls import run_tool_calls
+from events.event_bus import EventBus
+from events.types import AgentMessage, Error
 
 class State(TypedDict):
     messages: list
+    bus: EventBus
 
 
 def last_assistant_msg(messages):
@@ -49,13 +52,15 @@ def agent(state):
             msg["tool_calls"] = tool_calls
 
         if message.tool_calls and message.content:
-            print_agent(message.content)
+            # print_agent(message.content)
+            state["bus"].emit(AgentMessage(message.content))
 
         messages.append(msg)
         return {"messages": messages}
 
     except Exception as e:
-        print_error(str(e))
+        # print_error(str(e))
+        state["bus"].emit(Error(str(e)))
         return {"stop": True}
 
 
@@ -64,7 +69,7 @@ def tools(state):
     if not msg or not msg.get("tool_calls"):
         return {}
 
-    tool_results = run_tool_calls(msg["tool_calls"])
+    tool_results = run_tool_calls(msg["tool_calls"], state["bus"])
 
     messages = list(state["messages"])
     messages.extend(tool_results)
@@ -78,7 +83,8 @@ def route(state):
     msg = last_assistant_msg(state["messages"])
     if not msg or not msg.get("tool_calls"):
         if msg and msg.get("content"):
-            print_agent(msg["content"])
+            # print_agent(msg["content"])
+            state["bus"].emit(AgentMessage(msg["content"]))
         return END
 
     return "tools"

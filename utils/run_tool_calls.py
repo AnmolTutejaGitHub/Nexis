@@ -12,19 +12,27 @@ two Ps together.
  # REFERENCE: https://docs.python.org/3/library/concurrent.futures.html
 
 
+# ERROR that might come, for now bash call is not parallel, if i make it parallel then its approval need might cause issue as other parallel calls may print to console in meantime
+# fix - need to stop parallel execution for such cases, async await model then 
+
 import json
 from concurrent.futures import ThreadPoolExecutor
+from events.types import PreToolUse, PostToolUse
 from tools.tool_registry import TOOL_REGISTRY, function_call
-from utils.print_utils import print_tool_call, print_tool_result
 
 MAX_WORKERS = 8
 
 def is_parallel_safe(tool_name):
     tool = TOOL_REGISTRY.get(tool_name)
-    return bool(tool and tool.get("parallel_safe"))
+    return bool(tool and tool.get("parallel_safe") and not tool.get("approval")) # for now if approval needed then can't be parallel
+
+def run_call(call):
+    if not call["approved"]:
+        return "Tool call denied by user"
+    return function_call(call["name"], call["args"])
 
 
-def run_tool_calls(tool_calls):
+def run_tool_calls(tool_calls, bus):
     calls = []
 
     for call in tool_calls:
@@ -35,7 +43,8 @@ def run_tool_calls(tool_calls):
         })
 
     for call in calls:
-        print_tool_call(call["name"], call["args"])
+        # print_tool_call(call["name"], call["args"])
+        call["approved"] = bus.emit_approval(PreToolUse(call["name"], call["args"]))
 
     results = []
     i = 0
@@ -53,18 +62,21 @@ def run_tool_calls(tool_calls):
             if len(parallel_calls) > 1:
                 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
                     batch_results = list(executor.map(
-                        lambda call: function_call(call["name"], call["args"]),
+                        # lambda call: function_call(call["name"], call["args"]),
+                        run_call,
                         parallel_calls,
                     ))
             else:
                 call = parallel_calls[0]
-                batch_results = [function_call(call["name"], call["args"])]
+                # batch_results = [function_call(call["name"], call["args"])]
+                batch_results = [run_call(call)]
 
             results.extend(batch_results)
 
         else:
             results.append(
-                function_call(call["name"],call["args"])
+                # function_call(call["name"],call["args"])
+                run_call(call)
             )
             i += 1
 
@@ -74,7 +86,8 @@ def run_tool_calls(tool_calls):
         call = calls[i]
         result = results[i]
 
-        print_tool_result(result)
+        # print_tool_result(result)
+        bus.emit(PostToolUse(call["name"], result))
 
         messages.append({
             "role": "tool",
