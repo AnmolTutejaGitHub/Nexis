@@ -10,6 +10,7 @@ from tools.read_file import read_file_range
 from tools.ask_human import ask_human
 from tools.read_observation import read_observation
 from tools.glob import glob_files
+from tools.todowrite.todos import todo_write, DESCRIPTION as TODO_DESCRIPTION, STATUSES as TODO_STATUSES
 from utils.human_feedback.preview_edit import show_preview
 
 
@@ -277,6 +278,43 @@ TOOL_REGISTRY = {
                         },
                     },
                     "required": ["pattern"],
+                },
+            },
+        }
+    },
+
+    "todo_write": {
+        "fn": todo_write,
+        "parallel_safe": True,
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "todo_write",
+                "description": TODO_DESCRIPTION,
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "todos": {
+                            "type": "array",
+                            "description": "The updated todo list",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "content": {
+                                        "type": "string",
+                                        "description": "Brief description of the task",
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": list(TODO_STATUSES),
+                                        "description": "Current status of the task: " + ", ".join(TODO_STATUSES),
+                                    },
+                                },
+                                "required": ["content", "status"],
+                            },
+                        }
+                    },
+                    "required": ["todos"],
                 },
             },
         }

@@ -60,7 +60,7 @@ def environment_context(cwd=None):
         f"  Git branch: {branch}" if branch else None,
         f"  Platform: {platform.system()} {platform.release()}",
         f"  Home directory: {os.path.expanduser('~')}",
-        f"  Scratch directory: {scratchpad()}",
+        f"  Scratchpad directory: {scratchpad()}",
         f"  Today's date: {date.today().strftime('%a %b %d %Y')}",
         f"  Top level of working directory: {', '.join(entries)}" if entries else None,
         "</env>",

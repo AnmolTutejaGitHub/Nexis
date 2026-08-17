@@ -22,7 +22,7 @@ def print_banner():
 
 def print_tool_call(name, args):
     console.print(Panel(
-        f"{name}({args})",
+        Text(f"{name}({args})"),
         title="[bold #f59e0b]TOOL[/]",
         border_style="#f59e0b",
         padding=(0,1)
@@ -42,7 +42,7 @@ def print_agent(content):
     if content is None:
         return
     console.print(Panel(
-        content,
+        Text(content),
         title="[bold #a78bfa]Nexis[/]",
         border_style="#a78bfa",
         padding=(0,1)
@@ -51,7 +51,7 @@ def print_agent(content):
 
 def print_error(error):
     console.print(Panel(
-        _format_json(error),
+        Text(_format_json(error)),
         title="[bold red]Error[/]",
         border_style="red",
         padding=(0,1)

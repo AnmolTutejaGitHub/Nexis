@@ -58,6 +58,8 @@ Bash(cd ~/Desktop/"Harness - Examples"/codex && rg -n "session_id" codex-rs/core
 - Implement Task Management tools / plan mode also
 - user can message in between agent is processing 
 - modelusage, startsession, stop session as events, thinking
+- render todo tool call, add nag for todo say if more than 3 turns without todo update harness pass reminder to llm to check todo 
+- add a parameter to bashtool for timeout, cwd default to cwd, 
 
 ## On multi-line paste firing one model call per line:
 
