@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from uuid import uuid4
 from config import config
 from graph import graph
 from prompts.build_system_prompt import build_system_prompt
@@ -10,6 +11,9 @@ from utils.ui.print_utils import print_banner, user_input
 from events.event_bus import EventBus
 from events.listeners.ui import register_ui_listeners
 from events.listeners.permission import register_permission_listener
+
+PROMPT_CACHING_UUID = uuid4().hex
+config.PROMPT_CACHING_UUID = PROMPT_CACHING_UUID
 
 def main():
     print_banner()

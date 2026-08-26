@@ -9,6 +9,9 @@ from utils.run_tool_calls import run_tool_calls
 from events.event_bus import EventBus
 from events.types import AgentMessage, Error
 
+# REFERENCE = https://docs.litellm.ai/docs/completion/drop_params needed for prompt cache uuid param (openai compatible apis)
+litellm.drop_params = True
+
 class State(TypedDict):
     messages: list
     bus: EventBus
@@ -30,6 +33,7 @@ def agent(state):
             messages=messages,
             tools=tools,
             api_key=config.LLM_API_KEY,
+            prompt_cache_key=config.PROMPT_CACHING_UUID,
         )
         print_token_usage(response.usage) #per call not per loop
         message = response.choices[0].message

@@ -6,5 +6,6 @@ class Config:
     CONTEXT_WINDOW=200000 # fallback when the model's window is unknown
     LLM="openai/gpt-5.2"
     LLM_API_KEY=os.getenv("OPENAI_API_KEY")
+    PROMPT_CACHING_UUID=None
 
 config = Config()
