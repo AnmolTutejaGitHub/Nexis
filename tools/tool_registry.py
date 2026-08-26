@@ -7,11 +7,10 @@ from tools.read_file import read_file
 from tools.web_search import web_search
 from tools.code_navigation.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
-from tools.ask_human import ask_human
 from tools.read_observation import read_observation
 from tools.glob import glob_files
 from tools.todowrite.todos import todo_write, DESCRIPTION as TODO_DESCRIPTION, STATUSES as TODO_STATUSES
-from utils.human_feedback.preview_edit import show_preview
+from utils.ui.print_utils import show_preview
 
 
 TOOL_REGISTRY = {
@@ -161,11 +160,11 @@ TOOL_REGISTRY = {
             "type": "function",
             "function": {
                 "name": "bash_access",
-                "description": "Execute a shell command. Full shell interpretation is available — chain independent probes with && or ; and filter with pipes to answer several questions in one call rather than several. Use for running tests, installing packages, or inspecting the environment. Avoid destructive commands.",
+                "description": "Execute a shell command. Full shell interpretation is available — chain independent probes with && or ; and filter with pipes to answer several questions in one call rather than several. Use for running tests, installing packages, or inspecting the environment. Avoid destructive commands. Escape every backslash in the command: these arguments travel as JSON, where \\b is a backspace character and \\s is rejected outright, so a regex must be written \\\\b, \\\\s, \\\\d. An unescaped \\b will silently search for a control character and find nothing.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "command": {"type": "string", "description": "The shell command to execute."}
+                        "command": {"type": "string", "description": "The shell command to execute. Backslashes must be doubled: write \\\\bword\\\\b, not \\bword\\b."}
                     },
                     "required": ["command"]
                 }
@@ -206,25 +205,6 @@ TOOL_REGISTRY = {
                         "path": {"type": "string", "description": "Absolute or relative path of the file to get the repomap of."}
                     },
                     "required": ["path"]
-                }
-            }
-        }
-    },
-
-    "ask_human": {
-        "fn": ask_human,
-        "parallel_safe": False,
-        "schema": {
-            "type": "function",
-            "function": {
-                "name": "ask_human",
-                "description": "Ask the human user a clarifying question when you need more information to proceed. Use this when the task is ambiguous, you need a preference, or you need confirmation on a critical decision. Do NOT overuse — try to resolve uncertainties with available tools first.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "query": {"type": "string", "description": "The question to ask the human user."}
-                    },
-                    "required": ["query"]
                 }
             }
         }

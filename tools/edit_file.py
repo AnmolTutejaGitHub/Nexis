@@ -1,5 +1,3 @@
-from utils.human_feedback.preview_edit import preview_edit
-
 def edit_file(path: str, old_str: str = "", new_str: str = ""):
     try:
         with open(path, "r",encoding="utf-8") as f:

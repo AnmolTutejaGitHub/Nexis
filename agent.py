@@ -5,7 +5,7 @@ load_dotenv()
 from config import config
 from graph import graph
 from prompts.build_system_prompt import build_system_prompt
-from utils.print_utils import print_banner, user_input
+from utils.ui.print_utils import print_banner, user_input
 
 from events.event_bus import EventBus
 from events.listeners.ui import register_ui_listeners

@@ -1,5 +1,4 @@
 import subprocess
-from utils.print_utils import print_agent
 # from utils.human_feedback.ask_permission import ask_permission
 
 def bash_access(command: str):

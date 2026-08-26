@@ -27,6 +27,7 @@ class PostToolUse:
     """Emitted after a tool has executed with its result."""
 
     tool_name: str
+    tool_params: dict
     result: str
 
 

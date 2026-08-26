@@ -27,6 +27,8 @@ def is_parallel_safe(tool_name):
     return bool(tool and tool.get("parallel_safe") and not tool.get("approval")) # for now if approval needed then can't be parallel
 
 def run_call(call):
+    if call["error"]:
+        return call["error"]
     if not call["approved"]:
         return "Tool call denied by user"
     return function_call(call["name"], call["args"])
@@ -36,14 +38,28 @@ def run_tool_calls(tool_calls, bus):
     calls = []
 
     for call in tool_calls:
-        calls.append({
+        entry = {
             "id": call["id"],
             "name": call["function"]["name"],
-            "args": json.loads(call["function"]["arguments"]),
-        })
+            "args": {},
+            "error": None,
+        }
+        try:
+            entry["args"] = json.loads(call["function"]["arguments"])
+        except json.JSONDecodeError as e:
+            # A single-escaped regex is not valid JSON: \s and \d are illegal escapes,
+            # and \b silently becomes a backspace. Hand the model the parse error so it
+            # re-emits with the escaping fixed, rather than taking the whole turn down.
+            entry["error"] = (
+                f"Error: arguments were not valid JSON ({e}). "
+                r"Escape backslashes : write \\s, \\d, \\b in regex patterns."
+            )
+        calls.append(entry)
 
     for call in calls:
-        # print_tool_call(call["name"], call["args"])
+        if call["error"]:
+            call["approved"] = False
+            continue
         call["approved"] = bus.emit_approval(PreToolUse(call["name"], call["args"]))
 
     results = []
@@ -87,7 +103,7 @@ def run_tool_calls(tool_calls, bus):
         result = results[i]
 
         # print_tool_result(result)
-        bus.emit(PostToolUse(call["name"], result))
+        bus.emit(PostToolUse(call["name"], call["args"], result))
 
         messages.append({
             "role": "tool",

@@ -1,6 +1,5 @@
-from events.types import PreToolUse
 from tools.tool_registry import TOOL_REGISTRY
-from utils.human_feedback.ask_permission import ask_permission
+from utils.ui.print_utils import ask_permission
 
 def _question(event):
     tool = TOOL_REGISTRY.get(event.tool_name)
