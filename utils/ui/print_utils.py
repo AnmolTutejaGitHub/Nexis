@@ -39,6 +39,13 @@ def print_banner():
     for line, shade in BANNER:
         console.print(Text(line, style=shade))
 
+def spinner(label="thinking"):
+    return console.status(
+        Text(f"{label}…", style=RESULT_TEXT_COLOR),
+        spinner="dots",
+        spinner_style=AGENT_COLOR,
+    )
+
 def print_agent(content):
     if not content:
         return

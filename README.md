@@ -11,15 +11,17 @@
 A coding agent that runs in your terminal. You describe a task in plain language; Nexis
 reads the codebase, calls tools to search and edit it, and reports what it did.
 
+<p align="center">
+  <video src="assets/nexis-demo.mp4" poster="assets/nexis-demo-poster.png" width="820" controls muted playsinline></video>
+</p>
+
+<p align="center"><sub>Asked to build itself a new tool: it reads the existing tools, writes the implementation, and registers it. (Sped up 6x.)</sub></p>
+
 ## How it works
 
-A LangGraph state machine alternates between two nodes until the model stops asking for
-tools:
-
-```
-START → agent ──tool_calls?──→ tools ──→ agent → … → END
-              └──no──→ END
-```
+A LangGraph state machine alternates between an `agent` node that calls the model and a
+`tools` node that runs whatever it asked for, looping until the model replies without
+requesting any tools.
 
 - **`agent.py`** is the REPL: it reads your prompt, invokes the graph, and keeps the
   transcript.

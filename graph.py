@@ -3,7 +3,7 @@ import litellm
 from langgraph.graph import END, START, StateGraph
 from config import config
 from tools.tool_registry import get_tool_schemas
-from utils.ui.print_utils import print_token_usage
+from utils.ui.print_utils import print_token_usage, spinner
 from utils.prune_messages import prune_messages
 from utils.run_tool_calls import run_tool_calls
 from events.event_bus import EventBus
@@ -28,13 +28,15 @@ def agent(state):
     tools = get_tool_schemas()
 
     try:
-        response = litellm.completion(
-            model=config.LLM,
-            messages=messages,
-            tools=tools,
-            api_key=config.LLM_API_KEY,
-            prompt_cache_key=config.PROMPT_CACHING_UUID,
-        )
+        with spinner():
+            response = litellm.completion(
+                model=config.LLM,
+                messages=messages,
+                tools=tools,
+                api_key=config.LLM_API_KEY,
+                prompt_cache_key=config.PROMPT_CACHING_UUID,
+            )
+
         print_token_usage(response.usage) #per call not per loop
         message = response.choices[0].message
         msg = {"role": message.role}
