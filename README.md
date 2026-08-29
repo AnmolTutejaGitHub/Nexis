@@ -11,9 +11,7 @@
 A coding agent that runs in your terminal. You describe a task in plain language; Nexis
 reads the codebase, calls tools to search and edit it, and reports what it did.
 
-<p align="center">
-  <video src="assets/nexis-demo.mp4" poster="assets/nexis-demo-poster.png" width="820" controls muted playsinline></video>
-</p>
+https://github.com/user-attachments/assets/d528adb2-3189-4966-ac98-424a58a15361
 
 <p align="center"><sub>Asked to build itself a new tool: it reads the existing tools, writes the implementation, and registers it. (Sped up 6x.)</sub></p>
 
