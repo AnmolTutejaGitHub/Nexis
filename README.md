@@ -70,6 +70,8 @@ cd Nexis
 uv sync
 ```
 
+`./setup.sh` does the below setups for you.
+
 ### Configure
 
 ```bash
@@ -82,12 +84,13 @@ cp .env.sample .env
 uv run agent.py
 ```
 
-To use it from any directory, install it as a package and activate the venv:
+Or install it once, from the Nexis directory, and `nexis` works from any directory in
+that shell:
 
 ```bash
-uv pip install -e .
-source .venv/bin/activate
-nexis
+uv pip install -e .          # the "." is the Nexis directory, so run this from there
+source /path/to/nexis/.venv/bin/activate   # path to .venv/bin/activate inside nexis
+nexis                        # now works from anywhere
 ```
 
 ## Status
