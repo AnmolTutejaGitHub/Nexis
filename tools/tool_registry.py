@@ -7,7 +7,6 @@ from tools.read_file import read_file
 from tools.web_search import web_search
 from tools.code_navigation.repomap.get_repomap import get_repomap
 from tools.read_file import read_file_range
-from tools.read_observation import read_observation
 from tools.glob import glob_files
 from tools.todowrite.todos import todo_write, DESCRIPTION as TODO_DESCRIPTION, STATUSES as TODO_STATUSES
 from utils.ui.print_utils import show_preview
@@ -210,24 +209,6 @@ TOOL_REGISTRY = {
         }
     },
 
-    "read_observation": {
-        "fn": read_observation,
-        "parallel_safe": True,
-        "schema": {
-            "type": "function",
-            "function": {
-                "name": "read_observation",
-                "description": "Read a saved full tool result by observation id.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "observation_id": {"type": "string", "description": "Observation id from a summarized tool result."}
-                    },
-                    "required": ["observation_id"]
-                }
-            }
-        }
-    },
     "glob_files": {
         "fn": glob_files,
         "parallel_safe": True,

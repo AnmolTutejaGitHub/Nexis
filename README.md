@@ -8,85 +8,93 @@
   </a>
 </p>
 
-## Introduction
+A coding agent that runs in your terminal. You describe a task in plain language; Nexis
+reads the codebase, calls tools to search and edit it, and reports what it did.
 
-A coding agent that runs in your terminal. It can read, edit, search, and navigate codebases using tools.
+## How it works
 
-### Tools
+A LangGraph state machine alternates between two nodes until the model stops asking for
+tools:
 
-| Tool | Description |
-|---|---|
-| `read_file` / `read_file_range` | Read full files or specific line ranges |
-| `edit_file` | Surgical find-and-replace edits |
-| `update_file` | Overwrite a file with new content |
-| `create_path` | Create files or directories |
-| `delete_path` | Delete files or directories |
-| `list_files` | List directory contents (one level deep) |
-| `bash_access` | Execute shell commands |
-| `web_search` | Search the web via Tavily |
-| `semantic_search` | Vector-based codebase search |
-| `get_repomap` | Extract code structure (functions, classes, imports) using Tree-sitter |
+```
+START → agent ──tool_calls?──→ tools ──→ agent → … → END
+              └──no──→ END
+```
+
+- **`agent.py`** is the REPL: it reads your prompt, invokes the graph, and keeps the
+  transcript.
+- **`graph.py`** holds the two nodes above, plus the model call through LiteLLM.
+- **`utils/run_tool_calls.py`** executes a turn's tool calls, batching the read-only ones
+  into a thread pool and running the rest in order.
+- **`events/`** is an event bus. The graph and tool runner emit `PreToolUse`,
+  `PostToolUse`, `AgentMessage` and `Error`; listeners in `events/listeners/` handle
+  rendering, approval prompts and logging. Nothing in the core writes to the screen.
+- **`utils/ui/`** renders the terminal transcript. `tool_format.py` decides what each
+  call and result says; `print_utils.py` decides where it lands.
+- **`prompts/`** builds the system prompt, environment context (cwd, git branch,
+  platform) and any `AGENTS.md` found in the project.
+
+Because approval is a listener on the bus rather than a check inside each tool, adding a
+tool that needs confirmation is one key in the registry, not a code change in the tool.
+
+## Tools
+
+| Tool | Description | Parallel | Asks first |
+|---|---|:---:|:---:|
+| `read_file` | Read a file from the start, up to a line limit | ✓ | |
+| `read_file_range` | Read a specific line range | ✓ | |
+| `glob_files` | Find files matching a glob pattern | ✓ | |
+| `list_files` | List one directory, one level deep | ✓ | |
+| `get_repomap` | Extract functions, classes and imports via Tree-sitter | ✓ | |
+| `web_search` | Search the web via Tavily | ✓ | |
+| `todo_write` | Maintain a task list for the current session | ✓ | |
+| `edit_file` | Exact find-and-replace, or whole-file overwrite | | ✓ |
+| `create_path` | Create a file or directory | | |
+| `delete_path` | Delete a file or directory, recursively | | ✓ |
+| `bash_access` | Run a shell command | | ✓ |
+
+Tools marked *parallel* are read-only and run concurrently when the model requests
+several in one turn. Tools marked *asks first* stop for a y/n prompt, and `edit_file`
+shows a diff before you decide.
+
+Tree-sitter parsing covers 37 languages; see `tests/testing-repomap/`.
 
 ## Setup
 
-### Prerequisites
-
-- Python 3.12
-- [uv](https://docs.astral.sh/uv/) (recommended package manager)
-- A Gemini API key (or any LLM provider supported by LiteLLM)
-- A Tavily API key (for web search)
-
-### Install
+**Requirements:** Python 3.12, [uv](https://docs.astral.sh/uv/), and an API key for a
+model supported by [LiteLLM](https://docs.litellm.ai/docs/providers).
 
 ```bash
-# Clone the repo
 git clone https://github.com/AnmolTutejaGitHub/Nexis.git
 cd Nexis
-
-# Create the virtual environment and install dependencies
 uv sync
-
-# Install Nexis as an editable package (registers the `nexis` CLI command)
-uv pip install -e .
 ```
 
 ### Configure
-
-Copy the sample env file and add your keys:
 
 ```bash
 cp .env.sample .env
 ```
 
-```env
-GEMINI_API_KEY=your-gemini-api-key
-TAVILY_API_KEY=your-tavily-api-key
-```
-
 ### Run
-
-#### From the project directory
 
 ```bash
 uv run agent.py
 ```
 
-#### From anywhere (global CLI)
-
-After installing with `uv pip install -e .`, activate the project's virtual environment to make the `nexis` command available globally:
+To use it from any directory, install it as a package and activate the venv:
 
 ```bash
-source /path/to/Nexis/.venv/bin/activate 
-# (source /Users/anmoltuteja/Desktop/Nexis/.venv/bin/activate in my case)
-# now nexis works from anywhere
-```
-
-Now you can run Nexis from any directory:
-
-```bash
+uv pip install -e .
+source .venv/bin/activate
 nexis
 ```
 
+## Status
+
+Early and actively being worked on. `TODO.md` tracks what is planned and what is
+currently broken.
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
