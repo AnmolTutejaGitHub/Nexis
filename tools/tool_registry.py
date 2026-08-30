@@ -57,20 +57,30 @@ TOOL_REGISTRY = {
     "edit_file": {
         "fn": edit_file,
         "parallel_safe": False,
-        "approval": lambda params: (show_preview(params), "Accept this edit? (y/n)")[1],
+        "approval": lambda params: (show_preview(params), "Accept these changes? (y/n)")[1],
         "schema": {
             "type": "function",
             "function": {
                 "name": "edit_file",
-                "description": "Edit a file by replacing an exact string match, or overwrite the whole file when old_str is empty. old_str must appear EXACTLY ONCE — include surrounding lines to make it unique, or the edit is rejected and you are shown the ambiguous region. Read the target lines first so old_str matches byte for byte, including indentation. The user sees a diff and can reject the edit.",
+                "description": "Edit a file with one or more targeted replacements, or overwrite the whole file by passing a single edit with an empty old_str. When changing multiple separate locations in one file, use one edit_file call with multiple entries in edits[] instead of multiple edit_file calls. Edits are applied in order — do not emit overlapping or nested edits. Every old_str must appear EXACTLY ONCE in the file, or that edit is rejected and you are shown the ambiguous region. Read the target lines first so old_str matches byte for byte, including indentation. The user sees a diff of the whole batch and can reject it.",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "path": {"type": "string", "description": "Absolute or relative path of the file to edit."},
-                        "old_str": {"type": "string", "description": "The exact text to find and replace. Leave empty to overwrite the whole file."},
-                        "new_str": {"type": "string", "description": "The replacement text or full new file content."}
+                        "edits": {
+                            "type": "array",
+                            "description": "One or more targeted replacements to apply to the file, in order.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "old_str": {"type": "string", "description": "The exact text to find and replace. Keep it as small as possible while still being unique in the file — do not pad with large unchanged regions. Leave empty, as the only edit, to overwrite the whole file."},
+                                    "new_str": {"type": "string", "description": "The replacement text, or the full new file content when old_str is empty."}
+                                },
+                                "required": ["old_str", "new_str"]
+                            }
+                        }
                     },
-                    "required": ["path", "new_str"]
+                    "required": ["path", "edits"]
                 }
             }
         }

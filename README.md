@@ -48,7 +48,7 @@ tool that needs confirmation is one key in the registry, not a code change in th
 | `get_repomap` | Extract functions, classes and imports via Tree-sitter | ✓ | |
 | `web_search` | Search the web via Tavily | ✓ | |
 | `todo_write` | Maintain a task list for the current session | ✓ | |
-| `edit_file` | Exact find-and-replace, or whole-file overwrite | | ✓ |
+| `edit_file` | One or more exact find-and-replaces, or whole-file overwrite | | ✓ |
 | `create_path` | Create a file or directory | | |
 | `delete_path` | Delete a file or directory, recursively | | ✓ |
 | `bash_access` | Run a shell command | | ✓ |

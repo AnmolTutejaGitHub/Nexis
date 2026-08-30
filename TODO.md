@@ -62,6 +62,7 @@ Bash(cd ~/Desktop/"Harness - Examples"/codex && rg -n "session_id" codex-rs/core
 - add a parameter to bashtool for timeout, cwd default to cwd, 
 - make sure agent checks if it wants to use a tool like python or latex tool, which is installed (for example: `which pdflatex xelatex tectonic 2>/dev/null`)
 - send thinking tokens back to agent loop
+- multiple edits on same file : we are applying the correct ones and if error stop from there; can have some detection for it or better system see pi codebase
 
 ## On multi-line paste firing one model call per line:
 

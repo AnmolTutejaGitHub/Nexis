@@ -1,4 +1,7 @@
-def edit_file(path: str, old_str: str = "", new_str: str = ""):
+# issue : originally agent was calling edit tool on single file mutiple times as it accepts old and new string, so now accepting edits on same path as array
+# REFERENCE: https://github.com/earendil-works/pi/blob/4e494929998d6bc4fccf75e0a233f727db4b70ee/packages/coding-agent/src/core/tools/edit.ts
+
+def _edit_one(path: str, old_str: str = "", new_str: str = ""):
     try:
         with open(path, "r",encoding="utf-8") as f:
             original = f.read()
@@ -57,3 +60,28 @@ def edit_file(path: str, old_str: str = "", new_str: str = ""):
         return f"Error: file not found: {path}"
     except Exception as e:
         return f"Error: {str(e)[:500]}"
+
+
+def edit_file(path: str, edits: list = None, old_str: str = "", new_str: str = ""):
+    if not edits: # Models can still send a single edit.
+        edits = [{"old_str": old_str, "new_str": new_str}]
+
+    total = len(edits)
+    if total > 1 and any(not edit.get("old_str") for edit in edits):
+        return (
+            "Error: an empty old_str overwrites the whole file, so it must be the "
+            "only edit. Nothing was written."
+        )
+
+    for index, edit in enumerate(edits):
+        result = _edit_one(path, edit.get("old_str", ""), edit.get("new_str", ""))
+
+        if result.startswith("Error"):
+            return (
+                f"{result}\n\n"
+                f"This failed on edits[{index}]. "
+                f"{index} of {total} edits were written to the file; the rest were not. "
+                "Read the file again before retrying."
+            )
+
+    return f"File edited: {path} ({total} edit{'s' if total != 1 else ''})"

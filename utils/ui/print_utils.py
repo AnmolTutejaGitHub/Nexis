@@ -112,31 +112,43 @@ def print_token_usage(usage):
     console.print(Text("    " + f" {SEPARATOR} ".join(parts), style=RESULT_TEXT_COLOR))
 
 
-def _render_diff(path: str, old_str: str, new_str: str) -> None:
+def _render_diff(path: str, changes: list) -> None:
     header = Text("    ")
     header.append(f"{TOOL_RESULT_SYMBOL} ", style=RESULT_TEXT_COLOR)
     header.append(path, style=RESULT_TEXT_COLOR)
     console.print(header)
 
-    for line in old_str.splitlines():
-        console.print(Text(f"      - {line}", style=REMOVED_COLOR))
-    for line in new_str.splitlines():
-        console.print(Text(f"      + {line}", style=ADDED_COLOR))
+    for index, (old_str, new_str) in enumerate(changes):
+        if index:
+            console.print()
+        for line in old_str.splitlines():
+            console.print(Text(f"      - {line}", style=REMOVED_COLOR))
+        for line in new_str.splitlines():
+            console.print(Text(f"      + {line}", style=ADDED_COLOR))
 
 
 def show_preview(params: dict) -> None:
     path = params.get("path", "")
-    old_str = params.get("old_str", "")
-    new_str = params.get("new_str", "")
+    edits = params.get("edits") or [
+        {"old_str": params.get("old_str", ""), "new_str": params.get("new_str", "")}
+    ]
 
-    if not old_str:
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                old_str = f.read()
-        except OSError:
-            old_str = ""
+    changes = []
+    for edit in edits:
+        old_str = edit.get("old_str", "")
+        new_str = edit.get("new_str", "")
 
-    _render_diff(path, old_str, new_str)
+        # An empty old_str overwrites the file, so diff against what is there now.
+        if not old_str:
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    old_str = f.read()
+            except OSError:
+                old_str = ""
+
+        changes.append((old_str, new_str))
+
+    _render_diff(path, changes)
 
 
 def user_input():
