@@ -1,43 +1,66 @@
 from rich.console import Console
 from rich.markdown import Markdown
-from rich.panel import Panel
 from rich.text import Text
+from rich.align import Align
 
 from utils.ui import tool_format as fmt
 
 console = Console()
 
-# COLOURS
-AGENT_COLOR       = "#a78bfa"
-TOOL_COLOR        = "#f59e0b"
-ERROR_COLOR       = "#f87171"
-CALL_TEXT_COLOR   = "#9ca3af"
-RESULT_TEXT_COLOR = "#6b7280"
-USER_COLOR        = "#60a5fa"
-REMOVED_COLOR     = "red"
-ADDED_COLOR       = "#34d399"
+# COLOURS - Everforest Dark 
+AGENT_COLOR       = "#a7c080"
+TOOL_COLOR        = "#c1be7f"
+ERROR_COLOR       = "#e67e80"
+CALL_TEXT_COLOR   = "#9da9a0"
+RESULT_TEXT_COLOR = "#7a8478"
+USER_COLOR        = "#a7c080"
+REMOVED_COLOR     = "#e67e80"
+ADDED_COLOR       = "#a7c080"
+
+# COLOURS — Gruvbox Dark
+# AGENT_COLOR       = "#83a598"
+# TOOL_COLOR        = "#fabd2f"
+# ERROR_COLOR       = "#fb4934"
+# CALL_TEXT_COLOR   = "#a89984"
+# RESULT_TEXT_COLOR = "#928374"
+# USER_COLOR        = "#83a598"
+# REMOVED_COLOR     = "#fb4934"
+# ADDED_COLOR       = "#b8bb26"
 
 # Symbols
-AGENT_SYMBOL       = "· Nexis"
-TOOL_CALL_SYMBOL   = "."
+AGENT_SYMBOL       = "Nexis"
+TOOL_CALL_SYMBOL   = "⏺"
 TOOL_RESULT_SYMBOL = "_"
 ERROR_SYMBOL       = "✗"
-PROMPT_SYMBOL      = "›"
+PROMPT_SYMBOL      = "❯"
 SEPARATOR          = "·"
 
+# BANNER = [
+#     ("███╗   ██╗███████╗██╗  ██╗██╗███████╗", "#83c092"),
+#     ("████╗  ██║██╔════╝╚██╗██╔╝██║██╔════╝", "#91c08b"),
+#     ("██╔██╗ ██║█████╗   ╚███╔╝ ██║███████╗", "#a0c084"),
+#     ("██║╚██╗██║██╔══╝   ██╔██╗ ██║╚════██║", "#b1bf80"),
+#     ("██║ ╚████║███████╗██╔╝ ██╗██║███████║", "#c6be7f"),
+#     ("╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝", "#dbbc7f"),
+# ]
+# def print_banner():
+#     console.print()
+#     for line, shade in BANNER:
+#         console.print(Text(line, style=shade))
+
 BANNER = [
-    ("███╗   ██╗███████╗██╗  ██╗██╗███████╗", "#c4b5fd"),
-    ("████╗  ██║██╔════╝╚██╗██╔╝██║██╔════╝", "#b5a0fb"),
-    ("██╔██╗ ██║█████╗   ╚███╔╝ ██║███████╗", "#a78bfa"),
-    ("██║╚██╗██║██╔══╝   ██╔██╗ ██║╚════██║", "#9061f5"),
-    ("██║ ╚████║███████╗██╔╝ ██╗██║███████║", "#7c3aed"),
-    ("╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝", "#6d28d9"),
+    "███╗   ██╗███████╗██╗  ██╗██╗███████╗",
+    "████╗  ██║██╔════╝╚██╗██╔╝██║██╔════╝",
+    "██╔██╗ ██║█████╗   ╚███╔╝ ██║███████╗",
+    "██║╚██╗██║██╔══╝   ██╔██╗ ██║╚════██║",
+    "██║ ╚████║███████╗██╔╝ ██╗██║███████║",
+    "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝╚══════╝",
 ]
 
 def print_banner():
     console.print()
-    for line, shade in BANNER:
-        console.print(Text(line, style=shade))
+    console.print(Align.center(Text("\n".join(BANNER), style=AGENT_COLOR)))
+    console.print()
 
 def spinner(label="thinking"):
     return console.status(
@@ -90,19 +113,15 @@ def print_token_usage(usage):
 
 
 def _render_diff(path: str, old_str: str, new_str: str) -> None:
-    diff_text = Text()
+    header = Text("    ")
+    header.append(f"{TOOL_RESULT_SYMBOL} ", style=RESULT_TEXT_COLOR)
+    header.append(path, style=RESULT_TEXT_COLOR)
+    console.print(header)
 
     for line in old_str.splitlines():
-        diff_text.append(f"- {line}\n", style=f"bold {REMOVED_COLOR}")
+        console.print(Text(f"      - {line}", style=REMOVED_COLOR))
     for line in new_str.splitlines():
-        diff_text.append(f"+ {line}\n", style=f"bold {ADDED_COLOR}")
-
-    console.print(Panel(
-        diff_text,
-        title=f"[bold {TOOL_COLOR}]Edit Preview — {path}[/]",
-        border_style=TOOL_COLOR,
-        padding=(0,1)
-    ))
+        console.print(Text(f"      + {line}", style=ADDED_COLOR))
 
 
 def show_preview(params: dict) -> None:
@@ -126,6 +145,8 @@ def user_input():
 
 def ask_permission(question: str) -> bool:
     print_agent(question)
-    permission = console.input(f"[bold {USER_COLOR}]You[/bold {USER_COLOR}] (y/n) ")
-
+    permission = console.input(
+        f"[bold {USER_COLOR}]{PROMPT_SYMBOL}[/bold {USER_COLOR}] "
+        f"[{RESULT_TEXT_COLOR}](y/n)[/{RESULT_TEXT_COLOR}] "
+    )
     return permission.strip().lower() in ("y", "yes")
